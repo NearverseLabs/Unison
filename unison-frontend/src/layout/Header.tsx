@@ -1,10 +1,9 @@
 import { Fragment, MouseEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Stack, Box, Badge, Menu, MenuItem, Typography, Link, Divider, useTheme, Avatar } from '@mui/material';
+import { Stack, Box, Badge, Menu, MenuItem, Typography, Link, Divider, useTheme, Avatar, useMediaQuery, IconButton } from '@mui/material';
 import { useDispatch, useSelector } from 'store';
 
 import { FullLogoIcon, AlarmIcon } from 'ui-component/SvgIcon';
-import IconButton from '@mui/material/IconButton';
 import DefaultImg from 'assets/images/project.svg';
 import useApi from 'hooks/userApi';
 import { SetNotificationData } from 'store/reducers/notification';
@@ -13,6 +12,7 @@ const Header = () => {
     const navigate = useNavigate();
     const { palette } = useTheme();
     const dispatch = useDispatch();
+    const isMobile = useMediaQuery('(max-width:768px)');
     const { readNotification, allReadNotification } = useApi();
     const { notification } = useSelector((state) => state.notification);
     const { user } = useSelector((state) => state.auth);
@@ -125,7 +125,14 @@ const Header = () => {
             >
                 <MenuItem sx={{ opacity: '1 !important' }}>
                     <Stack
-                        sx={{ padding: '2px 0', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: '171px' }}
+                        sx={{
+                            padding: '2px 0',
+                            flexDirection: 'row',
+                            alignItems: 'center',
+                            justifyContent: 'space-between',
+                            minWidth: isMobile ? '100%' : '350px',
+                            gap: 3
+                        }}
                     >
                         <Typography fontSize={20} fontWeight={700}>
                             Notifications

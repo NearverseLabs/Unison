@@ -1,18 +1,17 @@
 import { useNavigate } from 'react-router-dom';
-import { Box, Button, Stack, Typography } from '@mui/material';
+import { Box, Button, Stack, Typography, useMediaQuery } from '@mui/material';
 
 import DefaultImage from 'assets/images/default.png';
 
 const MyListItem = ({ data }: any) => {
     const navigate = useNavigate();
+    const isMobile = useMediaQuery('(max-width:768px)');
     return (
         <Stack
             sx={{
                 p: 3,
                 gap: 3,
-                minWidth: 331,
-                width: 331,
-                height: 401,
+                width: isMobile ? '100%' : 331,
                 bgcolor: '#F1F1F1',
                 border: '1px solid #E7E7E7',
                 alignItems: 'center'

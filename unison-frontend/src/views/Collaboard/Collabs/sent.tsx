@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import { useTheme } from '@mui/material/styles';
 import {
     Button,
+    Card,
     Divider,
     Stack,
     Typography,
@@ -14,24 +14,15 @@ import {
     Badge,
     Modal,
     Box,
-    TextareaAutosize
+    TextareaAutosize,
+    useMediaQuery,
+    useTheme,
+    Pagination
 } from '@mui/material';
 import DefaultImg from 'assets/images/project.svg';
 import useApi from 'hooks/userApi';
 import { CollabTypeValue, FormatValue, InFLCollabTypeValue, PageSize } from 'components';
 import ClearIcon from '@mui/icons-material/Clear';
-import Pagination from '@mui/material/Pagination';
-
-const style = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 600,
-    bgcolor: 'background.paper',
-    border: '1px solid #000',
-    boxShadow: 24
-};
 
 const backgrounds: any = {
     0: 'orange',
@@ -49,11 +40,14 @@ const statusData: any = {
 
 const Received = () => {
     const { palette } = useTheme();
+    const isMobile = useMediaQuery('(max-width:768px)');
     const { getSentCollabs } = useApi();
 
     const [page, setPage] = useState(1);
+    const [pageSize, setPageSize] = useState(isMobile ? 2 : PageSize);
     const [open, setOpen] = useState(false);
-    const [totalPage, setTotalPage] = useState(0);
+    const [loading, setLoading] = useState(false);
+    const [totalCount, setTotalCount] = useState(0);
     const [collabs, setCollabs] = useState<any[]>([]);
     const [collabitem, setCollabitem] = useState({
         _id: '',
@@ -66,16 +60,17 @@ const Received = () => {
     const handleClose = () => setOpen(false);
 
     const getMyCollabsAPI = async () => {
-        const pageSize = PageSize;
+        setLoading(true);
         const { data } = await getSentCollabs({ page, pageSize });
-        setTotalPage(Math.ceil(data.count / pageSize));
+        setTotalCount(data.count);
         setCollabs(data.results);
+        setLoading(false);
     };
 
     useEffect(() => {
         getMyCollabsAPI();
         // eslint-disable-next-line
-    }, [page]);
+    }, [page, pageSize]);
 
     return (
         <>
@@ -86,116 +81,238 @@ const Received = () => {
                     </Typography>
                 </Stack>
             </Stack>
-            <Table
-                sx={{
-                    minWidth: 650,
-                    border: '1px solid #AAAAAA',
-                    borderRadius: 2,
-                    borderCollapse: 'unset',
-                    bgcolor: palette.grey[500]
-                }}
-                aria-label="simple table"
-            >
-                <TableHead>
-                    <TableRow>
-                        <TableCell>From</TableCell>
-                        <TableCell>To</TableCell>
-                        <TableCell>Type</TableCell>
-                        <TableCell>Format</TableCell>
-                        <TableCell>Spots</TableCell>
-                        <TableCell>status</TableCell>
-                        <TableCell>Requested By </TableCell>
-                        <TableCell>Actions</TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
+            {isMobile ? (
+                <>
                     {collabs.map((row, i) => (
-                        <TableRow key={i} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                            <TableCell component="th" scope="row">
-                                <Stack direction="row" gap={1.25} alignItems="center">
-                                    <Avatar
-                                        sx={{ width: 40, height: 40 }}
-                                        alt="Avatar"
-                                        src={
-                                            row.rqserver.length
-                                                ? `https://cdn.discordapp.com/icons/${row.rqserver[0].id}/${row.rqserver[0].icon}.png?size=1024`
-                                                : DefaultImg
-                                        }
-                                    />
-                                    {row.rqserver.length ? row.rqserver[0].name : 'others'}
+                        <Card sx={{ p: 2 }}>
+                            <Stack sx={{ flexWrap: 'wrap', flexDirection: 'row', gap: 2 }}>
+                                <Stack>
+                                    <Typography>From</Typography>
+                                    <Stack direction="row" gap={1.25} alignItems="center">
+                                        <Avatar
+                                            sx={{ width: 40, height: 40 }}
+                                            alt="Avatar"
+                                            src={
+                                                row.rqserver.length
+                                                    ? `https://cdn.discordapp.com/icons/${row.rqserver[0].id}/${row.rqserver[0].icon}.png?size=1024`
+                                                    : DefaultImg
+                                            }
+                                        />
+                                        {row.rqserver.length ? row.rqserver[0].name : 'others'}
+                                    </Stack>
                                 </Stack>
-                            </TableCell>
-                            <TableCell component="th" scope="row">
-                                <Stack direction="row" gap={1.25} alignItems="center">
-                                    <Avatar
-                                        sx={{ width: 40, height: 40 }}
-                                        alt="Avatar"
-                                        src={
-                                            row.server.icon
-                                                ? `https://cdn.discordapp.com/icons/${row.server.id}/${row.server.icon}.png?size=1024`
-                                                : DefaultImg
-                                        }
-                                    />
-                                    {row.server.name}
+                                <Stack>
+                                    <Typography>To</Typography>
+                                    <Stack direction="row" gap={1.25} alignItems="center">
+                                        <Avatar
+                                            sx={{ width: 40, height: 40 }}
+                                            alt="Avatar"
+                                            src={
+                                                row.server.icon
+                                                    ? `https://cdn.discordapp.com/icons/${row.server.id}/${row.server.icon}.png?size=1024`
+                                                    : DefaultImg
+                                            }
+                                        />
+                                        {row.server.name}
+                                    </Stack>
                                 </Stack>
-                            </TableCell>
-                            <TableCell>
-                                <Button variant="contained" size="small">
-                                    {row.project.userType === 1
-                                        ? CollabTypeValue[row.collabType - 1].name
-                                        : InFLCollabTypeValue[row.collabType - 1].name}
-                                </Button>
-                            </TableCell>
-                            <TableCell>
-                                <Button variant="contained" size="small">
-                                    {FormatValue[row.format - 2] && FormatValue[row.format - 2].name}
-                                </Button>
-                            </TableCell>
-                            <TableCell>{row.openedSpots}</TableCell>
-                            <TableCell
-                                sx={{
-                                    '& .MuiBadge-badge': {
-                                        background: backgrounds[row.status]
-                                    }
-                                }}
-                            >
-                                <Badge color="primary" overlap="circular" badgeContent={statusData[row.status]} />
-                            </TableCell>
-                            <TableCell>
-                                <Stack direction="row" gap={1.25} alignItems="center">
-                                    <Avatar
-                                        sx={{ width: 40, height: 40 }}
-                                        alt="Avatar"
-                                        src={`https://cdn.discordapp.com/avatars/${row.user.userid}/${row.user.avatar}.png`}
-                                    />
-                                    {row.user.username}#{row.user.discriminator}
-                                </Stack>
-                            </TableCell>
-                            <TableCell>
-                                <Stack direction="row" gap={1.5}>
-                                    <Button
-                                        onClick={() => {
-                                            handleOpen();
-                                            setCollabitem(row);
-                                        }}
-                                        variant="contained"
-                                        size="small"
-                                        sx={{ padding: '4px 16px' }}
-                                    >
-                                        View Description
+                                <Stack>
+                                    <Typography>Type</Typography>
+                                    <Button variant="contained" size="small">
+                                        {row.project.userType === 1
+                                            ? CollabTypeValue[row.collabType - 1].name
+                                            : InFLCollabTypeValue[row.collabType - 1].name}
                                     </Button>
                                 </Stack>
-                            </TableCell>
-                        </TableRow>
+                                <Stack>
+                                    <Typography>Format</Typography>
+                                    <Button variant="contained" size="small">
+                                        {FormatValue[row.format - 2] && FormatValue[row.format - 2].name}
+                                    </Button>
+                                </Stack>
+                                <Stack>
+                                    <Typography>Spots</Typography>
+                                    {row.openedSpots}
+                                </Stack>
+                                <Stack>
+                                    <Typography>Status</Typography>
+                                    <Button
+                                        size="small"
+                                        variant="contained"
+                                        sx={{
+                                            background: backgrounds[row.status]
+                                        }}
+                                    >
+                                        {statusData[row.status]}
+                                    </Button>
+                                </Stack>
+                                <Stack>
+                                    <Typography>Requested By</Typography>
+                                    <Stack direction="row" gap={1.25} alignItems="center">
+                                        <Avatar
+                                            sx={{ width: 40, height: 40 }}
+                                            alt="Avatar"
+                                            src={`https://cdn.discordapp.com/avatars/${row.user.userid}/${row.user.avatar}.png`}
+                                        />
+                                        {row.user.username}#{row.user.discriminator}
+                                    </Stack>
+                                </Stack>
+                                <Stack>
+                                    <Typography>Actions</Typography>
+                                    <Stack direction="row" gap={1.5}>
+                                        <Button
+                                            onClick={() => {
+                                                handleOpen();
+                                                setCollabitem(row);
+                                            }}
+                                            variant="contained"
+                                            size="small"
+                                            sx={{ padding: '4px 16px' }}
+                                        >
+                                            View Description
+                                        </Button>
+                                    </Stack>
+                                </Stack>
+                            </Stack>
+                        </Card>
                     ))}
-                </TableBody>
-            </Table>
-            <Stack sx={{ alignItems: 'flex-end' }}>
-                <Pagination page={page} count={totalPage} onChange={(e, p) => setPage(p)} variant="outlined" shape="rounded" />
-            </Stack>
+                    {collabs.length !== totalCount && (
+                        <Button disabled={loading} onClick={() => setPageSize(pageSize + 2)} variant="text" size="small">
+                            Load more
+                        </Button>
+                    )}
+                </>
+            ) : (
+                <>
+                    <Table
+                        sx={{
+                            minWidth: 650,
+                            border: '1px solid #AAAAAA',
+                            borderRadius: 2,
+                            borderCollapse: 'unset',
+                            bgcolor: palette.grey[500]
+                        }}
+                        aria-label="simple table"
+                    >
+                        <TableHead>
+                            <TableRow>
+                                <TableCell>From</TableCell>
+                                <TableCell>To</TableCell>
+                                <TableCell>Type</TableCell>
+                                <TableCell>Format</TableCell>
+                                <TableCell>Spots</TableCell>
+                                <TableCell>Status</TableCell>
+                                <TableCell>Requested By</TableCell>
+                                <TableCell>Actions</TableCell>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            {collabs.map((row, i) => (
+                                <TableRow key={i} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                                    <TableCell component="th" scope="row">
+                                        <Stack direction="row" gap={1.25} alignItems="center">
+                                            <Avatar
+                                                sx={{ width: 40, height: 40 }}
+                                                alt="Avatar"
+                                                src={
+                                                    row.rqserver.length
+                                                        ? `https://cdn.discordapp.com/icons/${row.rqserver[0].id}/${row.rqserver[0].icon}.png?size=1024`
+                                                        : DefaultImg
+                                                }
+                                            />
+                                            {row.rqserver.length ? row.rqserver[0].name : 'others'}
+                                        </Stack>
+                                    </TableCell>
+                                    <TableCell component="th" scope="row">
+                                        <Stack direction="row" gap={1.25} alignItems="center">
+                                            <Avatar
+                                                sx={{ width: 40, height: 40 }}
+                                                alt="Avatar"
+                                                src={
+                                                    row.server.icon
+                                                        ? `https://cdn.discordapp.com/icons/${row.server.id}/${row.server.icon}.png?size=1024`
+                                                        : DefaultImg
+                                                }
+                                            />
+                                            {row.server.name}
+                                        </Stack>
+                                    </TableCell>
+                                    <TableCell>
+                                        <Button variant="contained" size="small">
+                                            {row.project.userType === 1
+                                                ? CollabTypeValue[row.collabType - 1].name
+                                                : InFLCollabTypeValue[row.collabType - 1].name}
+                                        </Button>
+                                    </TableCell>
+                                    <TableCell>
+                                        <Button variant="contained" size="small">
+                                            {FormatValue[row.format - 2] && FormatValue[row.format - 2].name}
+                                        </Button>
+                                    </TableCell>
+                                    <TableCell>{row.openedSpots}</TableCell>
+                                    <TableCell
+                                        sx={{
+                                            '& .MuiBadge-badge': {
+                                                background: backgrounds[row.status]
+                                            }
+                                        }}
+                                    >
+                                        <Badge color="primary" overlap="circular" badgeContent={statusData[row.status]} />
+                                    </TableCell>
+                                    <TableCell>
+                                        <Stack direction="row" gap={1.25} alignItems="center">
+                                            <Avatar
+                                                sx={{ width: 40, height: 40 }}
+                                                alt="Avatar"
+                                                src={`https://cdn.discordapp.com/avatars/${row.user.userid}/${row.user.avatar}.png`}
+                                            />
+                                            {row.user.username}#{row.user.discriminator}
+                                        </Stack>
+                                    </TableCell>
+                                    <TableCell>
+                                        <Stack direction="row" gap={1.5}>
+                                            <Button
+                                                onClick={() => {
+                                                    handleOpen();
+                                                    setCollabitem(row);
+                                                }}
+                                                variant="contained"
+                                                size="small"
+                                                sx={{ padding: '4px 16px' }}
+                                            >
+                                                View Description
+                                            </Button>
+                                        </Stack>
+                                    </TableCell>
+                                </TableRow>
+                            ))}
+                        </TableBody>
+                    </Table>
+                    <Stack sx={{ alignItems: 'flex-end' }}>
+                        <Pagination
+                            page={page}
+                            count={Math.ceil(totalCount / pageSize)}
+                            onChange={(e, p) => setPage(p)}
+                            variant="outlined"
+                            shape="rounded"
+                        />
+                    </Stack>
+                </>
+            )}
             <Divider />
             <Modal open={open} onClose={handleClose} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
-                <Box sx={style}>
+                <Box
+                    sx={{
+                        position: 'absolute',
+                        top: '50%',
+                        left: '50%',
+                        minWidth: isMobile ? '85%' : 400,
+                        transform: 'translate(-50%, -50%)',
+                        bgcolor: 'background.paper',
+                        border: '1px solid #000',
+                        boxShadow: 24
+                    }}
+                >
                     <Stack
                         sx={{
                             background: 'black',

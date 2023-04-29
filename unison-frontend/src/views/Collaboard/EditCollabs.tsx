@@ -14,7 +14,7 @@ const AddComponent = (props: any) => {
 
     return (
         <>
-            <Stack direction="row" justifyContent="space-between">
+            <Stack direction="row" justifyContent="space-between" sx={{ flexWrap: isMobile ? 'wrap' : 'nowrap' }}>
                 <Stack gap="14px">
                     <Typography color="text.primary" sx={{ fontSize: 24, fontWeight: 600 }}>
                         Edit Project
@@ -53,11 +53,11 @@ const AddComponent = (props: any) => {
                         color: 'text.secondary'
                     },
                     '& .req-input': {
-                        width: 454
+                        width: isMobile ? 'auto' : 454
                     }
                 }}
             >
-                <Stack direction="row" gap={9.5}>
+                <Stack direction={isMobile ? 'column' : 'row'} gap={isMobile ? 0 : 9.5}>
                     <Stack gap={1} width={198}>
                         <Typography className="req-title">Project *</Typography>
                         <Typography className="req-small-tle">This will be your profile name.</Typography>
@@ -80,7 +80,7 @@ const AddComponent = (props: any) => {
                         </Select>
                     </Stack>
                 </Stack>
-                <Stack direction="row" gap={9.5}>
+                <Stack direction={isMobile ? 'column' : 'row'} gap={isMobile ? 0 : 9.5}>
                     <Stack gap={1} width={198}>
                         <Typography className="req-title">Project Description *</Typography>
                         <Typography className="req-small-tle">viverra cursus non elementum.</Typography>
@@ -100,7 +100,7 @@ const AddComponent = (props: any) => {
                         />
                     </Stack>
                 </Stack>
-                <Stack direction="row" gap={9.5}>
+                <Stack direction={isMobile ? 'column' : 'row'} gap={isMobile ? 0 : 9.5}>
                     <Stack gap={1} width={198}>
                         <Typography className="req-title">Project Status *</Typography>
                         <Typography className="req-small-tle">Etiam in mauris sit amet turpis</Typography>
@@ -123,7 +123,7 @@ const AddComponent = (props: any) => {
                         </Select>
                     </Stack>
                 </Stack>
-                <Stack direction="row" gap={9.5}>
+                <Stack direction={isMobile ? 'column' : 'row'} gap={isMobile ? 0 : 9.5}>
                     <Stack gap={1} width={198}>
                         <Typography className="req-title">Collab Status *</Typography>
                         <Typography className="req-small-tle">This will be your profile name.</Typography>
@@ -146,7 +146,7 @@ const AddComponent = (props: any) => {
                         </Select>
                     </Stack>
                 </Stack>
-                <Stack direction="row" gap={9.5}>
+                <Stack direction={isMobile ? 'column' : 'row'} gap={isMobile ? 0 : 9.5}>
                     <Stack gap={1} width={198}>
                         <Typography className="req-title">User Type *</Typography>
                         <Typography className="req-small-tle">This will be your User Type.</Typography>
@@ -169,7 +169,7 @@ const AddComponent = (props: any) => {
                         </Select>
                     </Stack>
                 </Stack>
-                <Stack direction="row" gap={9.5}>
+                <Stack direction={isMobile ? 'column' : 'row'} gap={isMobile ? 0 : 9.5}>
                     <Stack gap={1} width={198}>
                         <Typography className="req-title">Twitter Link*</Typography>
                         <Typography className="req-small-tle">This will be your profile name.</Typography>
@@ -186,7 +186,7 @@ const AddComponent = (props: any) => {
                         />
                     </Stack>
                 </Stack>
-                <Stack direction="row" gap={9.5}>
+                <Stack direction={isMobile ? 'column' : 'row'} gap={isMobile ? 0 : 9.5}>
                     <Stack gap={1} width={198}>
                         <Typography className="req-title">Discord Link*</Typography>
                         <Typography className="req-small-tle">This will be your profile name.</Typography>
@@ -204,7 +204,7 @@ const AddComponent = (props: any) => {
                     </Stack>
                 </Stack>
 
-                <Stack direction="row" gap={9.5}>
+                <Stack direction={isMobile ? 'column' : 'row'} gap={isMobile ? 0 : 9.5}>
                     <Stack gap={1} width={198}>
                         <Typography className="req-title">Role *</Typography>
                         <Typography className="req-small-tle">This is role</Typography>

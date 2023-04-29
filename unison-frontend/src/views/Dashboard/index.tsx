@@ -1,4 +1,3 @@
-import { useTheme } from '@mui/material/styles';
 import {
     Button,
     Divider,
@@ -11,7 +10,8 @@ import {
     TableBody,
     Avatar,
     Link,
-    IconButton
+    IconButton,
+    useTheme
 } from '@mui/material';
 
 import { useNavigate } from 'react-router-dom';

@@ -754,7 +754,7 @@ export const FetchCountDownCollab = async () => {
 };
 
 export const FetchInprogresscollab = async () => {
-  const endcollabs: any = await Collabs.updateMany(
+  await Collabs.updateMany(
     {
       inprogressdate: {
         $lte: new Date()

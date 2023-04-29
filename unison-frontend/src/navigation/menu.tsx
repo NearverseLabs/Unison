@@ -3,14 +3,14 @@ import { DashboardIcon, CollabIcon, LogoutIcon } from 'ui-component/SvgIcon';
 const Menu = [
     {
         id: 'dashboard',
-        title: 'Admin-Dashboard',
+        title: 'Dashboard',
         type: 'item',
         url: '/dashboard',
         icon: <DashboardIcon />
     },
     {
         id: 'collab',
-        title: 'Collab-Board',
+        title: 'Collab',
         type: 'item',
         url: '/collab',
         icon: <CollabIcon />

@@ -1,5 +1,4 @@
-import { useTheme } from '@mui/material/styles';
-import { Button, Stack, Typography } from '@mui/material';
+import { Button, Stack, Typography, useTheme } from '@mui/material';
 
 const RequestBot = ({ handleClick, checked }: any) => {
     const { palette } = useTheme();

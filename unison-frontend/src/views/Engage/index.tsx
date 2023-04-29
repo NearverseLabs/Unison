@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import { styled, alpha } from '@mui/material/styles';
-import { Button, Stack, Typography, InputBase, Select, OutlinedInput, MenuItem } from '@mui/material';
+import { Button, Stack, Typography, InputBase, Select, OutlinedInput, MenuItem, styled, alpha } from '@mui/material';
 
 import SearchIcon from '@mui/icons-material/Search';
 

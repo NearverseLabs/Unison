@@ -9,10 +9,10 @@ import Menu from 'navigation/menu';
 import { Logout } from 'store/reducers/auth';
 
 const Sidebar = () => {
-    const [selectedIndex, setSelectedIndex] = useState<number>(0);
     const { palette } = useTheme();
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const [selectedIndex, setSelectedIndex] = useState<number>(0);
 
     const location = useLocation();
 

@@ -1,5 +1,4 @@
-import { useTheme } from '@mui/material/styles';
-import { Stack, Table, TableHead, TableCell, TableRow, TableBody, Avatar } from '@mui/material';
+import { Stack, Table, TableHead, TableCell, TableRow, TableBody, Avatar, useTheme } from '@mui/material';
 import DefaultImg from 'assets/images/project.svg';
 
 const DataList = [

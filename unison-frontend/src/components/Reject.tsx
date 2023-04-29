@@ -1,5 +1,4 @@
-import { useTheme } from '@mui/material/styles';
-import { Stack, Typography } from '@mui/material';
+import { Stack, Typography, useTheme } from '@mui/material';
 
 const RequestReject = () => {
     const { palette } = useTheme();

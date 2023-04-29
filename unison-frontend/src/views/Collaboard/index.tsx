@@ -1,8 +1,19 @@
 import { useState, useEffect, Fragment } from 'react';
-import { styled, alpha, Theme, useTheme } from '@mui/material/styles';
-import { Button, Stack, InputBase, Select, OutlinedInput, MenuItem, useMediaQuery } from '@mui/material';
+import {
+    Button,
+    Stack,
+    InputBase,
+    Select,
+    OutlinedInput,
+    SelectChangeEvent,
+    MenuItem,
+    useMediaQuery,
+    styled,
+    alpha,
+    Theme,
+    useTheme
+} from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
-import { SelectChangeEvent } from '@mui/material/Select';
 import { useNavigate } from 'react-router-dom';
 import ListItem from './ListItem';
 import MyListItem from './myListItem';
@@ -158,11 +169,20 @@ const CollaboardPage = () => {
                     gap: 2,
                     width: '100%',
                     justifyContent: 'space-between',
+                    alignItems: 'center',
                     flexDirection: 'row',
                     flexWrap: isMobile ? 'wrap' : 'nowrap'
                 }}
             >
-                <Stack sx={{ flexDirection: 'row', gap: 2, alignItems: 'center', width: '100%', justifyContent: 'space-between' }}>
+                <Stack
+                    sx={{
+                        flexDirection: 'row',
+                        gap: 2,
+                        alignItems: 'center',
+                        width: '100%',
+                        justifyContent: isMobile ? 'space-between' : 'flex-start'
+                    }}
+                >
                     <Search>
                         <SearchIconWrapper>
                             <SearchIcon />
@@ -205,7 +225,7 @@ const CollaboardPage = () => {
                     </Select>
                 </Stack>
 
-                <Stack flexDirection="row" gap={3} sx={{ width: '100%', justifyContent: 'space-between' }}>
+                <Stack flexDirection="row" gap={3} sx={{ width: '100%', justifyContent: isMobile ? 'space-between' : 'flex-end' }}>
                     <Select
                         value={manager}
                         onChange={handleChange}

@@ -3,6 +3,7 @@ import { Outlet } from 'react-router-dom';
 import { AppBar, Box, CssBaseline, Toolbar, Stack, useMediaQuery } from '@mui/material';
 import Header from './Header';
 import Sidebar from './Sidebar';
+import Mobile from './Sidebar/Mobile';
 
 const MainLayout = () => {
     const isMobile = useMediaQuery('(max-width:768px)');
@@ -23,7 +24,9 @@ const MainLayout = () => {
                 {header}
             </AppBar>
             <Stack flexDirection="row">
-                {!isMobile && (
+                {isMobile ? (
+                    <Mobile />
+                ) : (
                     <AppBar
                         sx={{ width: 262, bgcolor: 'white', height: 'calc(100vh - 96px)' }}
                         color="inherit"
@@ -40,7 +43,8 @@ const MainLayout = () => {
                         bgcolor: '#FAFAFA',
                         padding: 4,
                         height: 'calc(100vh - 96px)',
-                        overflowY: 'auto'
+                        overflowY: 'auto',
+                        pb: isMobile ? '130px' : 0
                     }}
                 >
                     <Outlet />
