@@ -1,6 +1,6 @@
 import { useState, useEffect, Fragment } from 'react';
 import { styled, alpha, Theme, useTheme } from '@mui/material/styles';
-import { Button, Stack, InputBase, Select, OutlinedInput, MenuItem } from '@mui/material';
+import { Button, Stack, InputBase, Select, OutlinedInput, MenuItem, useMediaQuery } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import { SelectChangeEvent } from '@mui/material/Select';
 import { useNavigate } from 'react-router-dom';
@@ -60,9 +60,10 @@ const getStyles = (name: string, personName: readonly string[], theme: Theme) =>
 });
 
 const CollaboardPage = () => {
-    const navigate = useNavigate();
     const theme = useTheme();
+    const navigate = useNavigate();
     const { getProjects } = useApi();
+    const isMobile = useMediaQuery('(max-width:768px)');
     const { user } = useSelector((state) => state.auth);
 
     const [projects, setProjects] = useState([]);
@@ -157,10 +158,11 @@ const CollaboardPage = () => {
                     gap: 2,
                     width: '100%',
                     justifyContent: 'space-between',
-                    flexDirection: 'row'
+                    flexDirection: 'row',
+                    flexWrap: isMobile ? 'wrap' : 'nowrap'
                 }}
             >
-                <Stack sx={{ flexDirection: 'row', gap: 2, alignItems: 'center' }}>
+                <Stack sx={{ flexDirection: 'row', gap: 2, alignItems: 'center', width: '100%', justifyContent: 'space-between' }}>
                     <Search>
                         <SearchIconWrapper>
                             <SearchIcon />
@@ -203,7 +205,7 @@ const CollaboardPage = () => {
                     </Select>
                 </Stack>
 
-                <Stack flexDirection="row" gap={3}>
+                <Stack flexDirection="row" gap={3} sx={{ width: '100%', justifyContent: 'space-between' }}>
                     <Select
                         value={manager}
                         onChange={handleChange}
@@ -239,7 +241,6 @@ const CollaboardPage = () => {
                     </Button>
                 </Stack>
             </Stack>
-            {/* )} */}
 
             <Stack
                 sx={{

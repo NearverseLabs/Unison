@@ -1,12 +1,12 @@
-import { useTheme } from '@mui/material/styles';
-import { Button, Stack, Typography, Select, MenuItem } from '@mui/material';
+import { Button, Stack, Typography, Select, MenuItem, useTheme, useMediaQuery } from '@mui/material';
 
 const RequestSuccessfull = ({ handleClick, roleoptions, form, setForm }: any) => {
     const { palette } = useTheme();
+    const isMobile = useMediaQuery('(max-width:768px)');
     return (
         <Stack
             sx={{
-                width: 496,
+                width: isMobile ? '100%' : 496,
                 padding: '33px 40px',
                 gap: 1.5,
                 bgcolor: palette.common.white,

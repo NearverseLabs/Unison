@@ -29,18 +29,10 @@ export const getServers = async (req: Request, res: Response) => {
   if (!data) {
     return res.status(400).json('Interanal server error');
   }
-  // console.log(data)
   let ids: any = [];
   let results: any = [];
   const previtems = await Projects.find({ userId: req.user.userid });
-  console.log(previtems, '--previtems--');
-
-  let result = data.filter(async (item: any) => {
-    // if (item.permissions === '35184372088831') {
-
-    if (item.name == 'RocketBois by NEARverse Labs') {
-      console.log(item.permissions);
-    }
+  data.filter(async (item: any) => {
     if (
       item.permissions === '70368744177663' ||
       item.permissions === '140737488355327'
@@ -70,15 +62,6 @@ export const getRoles = async (req: Request, res: Response) => {
   roles.forEach((role: any) => {
     console.log(role.name);
   });
-  // for (let i in roles) {
-  //   console.log(roles[i])
-  //   options.push({
-  //     label: roles[i].name,
-  //     value: roles[i].id
-  //   })
-  // }
-  // console.log(roles)
-  // console.log(options)
   return res.json(options);
 };
 
@@ -121,22 +104,6 @@ export const getMyProjects = async (req: Request, res: Response) => {
 export const newProject = async (req: Request, res: Response) => {
   let query = req.body;
   query.userId = req.user.userid;
-  // await axios
-  //   .get(
-  //     `https://discordapp.com/api/v9/users/@me/guilds/${query.serverId}/member`,
-  //     {
-  //       headers: {
-  //         Authorization: `Bearer ${user.accessToken}`
-  //       }
-  //     }
-  //   )
-  //   .then(({ data }) => {
-  //     console.log(data, '==>success');
-  //     return res.json([]);
-  //   })
-  //   .catch(({ response }) => {
-  //     console.log(response, '==>errr');
-  //   });
   const existsPro = await Projects.find({ userId: query.userId });
   if (existsPro.length >= 3)
     return res.status(400).json('You can add up to 3 projects');
@@ -152,7 +119,6 @@ export const newProject = async (req: Request, res: Response) => {
   if (!project) {
     return res.status(400).json('Interanal server error');
   } else {
-    // const roleoptions: any = await getRolebyServerId(project.serverId)
     return res.json(true);
   }
 };
@@ -189,7 +155,6 @@ export const getProjectById = async (req: Request, res: Response) => {
 };
 
 export const getRolebyServerId = async (serverId: any) => {
-  console.log(serverId, '--serverId--');
   const IgnoreLs = ['@everyone', 'UnisonBot1'];
   const client = getBot();
   let roleoptions: any = [
@@ -284,7 +249,6 @@ export const applyProject = async (req: Request, res: Response) => {
   let query = req.body;
   query.userId = req.user.userid;
   query.enddate = new Date(new Date().valueOf() + 1800 * 1000);
-  // query.enddate = new Date(new Date().valueOf() + 3 * 3600 * 1000)
   const collab = new Collabs(query);
   const result = await collab.save();
   const useritem = await Projects.findById(collab.projectId);
@@ -596,7 +560,6 @@ export const getInprogressMyCollabs = async (req: Request, res: Response) => {
 export const updateCollab = async (req: Request, res: Response) => {
   const { _id, status, format } = req.body;
   const collabitem = await Collabs.findById(_id);
-  // const enddate = new Date(new Date().valueOf() + 120 * 1000)
   const enddate = new Date(
     new Date().valueOf() +
       collabitem.expiretime * 3600 * 1000 +
@@ -624,10 +587,8 @@ export const updateCollab = async (req: Request, res: Response) => {
       projectId: up.projectId
     };
     await subscribeNotification(notifiquery, req);
-    // collabType
     if (status === 1) {
       if (up.collabType == 1) {
-        console.log(up.projectId);
         if (up.projectId.channelId.length) {
           await postAnnouncement({
             description: up.description,
@@ -636,8 +597,6 @@ export const updateCollab = async (req: Request, res: Response) => {
             format: up.format,
             projectid: up.requestBy.projectName
           });
-        } else {
-          // res.send("")
         }
       } else {
         const pjitem: any = await Projects.findOne({

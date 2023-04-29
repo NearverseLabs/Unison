@@ -1,5 +1,5 @@
 import { useEffect, useState, ChangeEvent } from 'react';
-import { Button, Divider, Stack, Typography, Select, MenuItem, TextField } from '@mui/material';
+import { Button, Divider, Stack, Typography, Select, MenuItem, TextField, useMediaQuery } from '@mui/material';
 
 import { useNavigate } from 'react-router-dom';
 import useApi from 'hooks/userApi';
@@ -15,6 +15,7 @@ import Reject from 'components/Reject';
 const AddComponent = (props: any) => {
     const { form, setForm, setPage } = props;
     const { getServers } = useApi();
+    const isMobile = useMediaQuery('(max-width:768px)');
     const [servers, setServers] = useState([]);
 
     const handleNextStepClick = () => {
@@ -39,7 +40,7 @@ const AddComponent = (props: any) => {
 
     return (
         <>
-            <Stack direction="row" justifyContent="space-between">
+            <Stack direction="row" justifyContent="space-between" sx={{ flexWrap: isMobile ? 'wrap' : 'nowrap' }}>
                 <Stack gap="14px">
                     <Typography color="text.primary" sx={{ fontSize: 24, fontWeight: 600 }}>
                         Add New Project
@@ -48,13 +49,15 @@ const AddComponent = (props: any) => {
                         This information will be displayed publicly.
                     </Typography>
                 </Stack>
-                <Stack justifyContent="center">
+                <Stack justifyContent="center" sx={{ mt: isMobile ? 2 : 0 }}>
                     <Button
                         variant="contained"
                         color="primary"
                         size="medium"
                         sx={{ width: 110 }}
-                        disabled={form.serverId && form.description && form.projectStatus && form.collabStatus && form.userType ? false : true}
+                        disabled={
+                            form.serverId && form.description && form.projectStatus && form.collabStatus && form.userType ? false : true
+                        }
                         onClick={handleNextStepClick}
                     >
                         Next Step
@@ -76,11 +79,11 @@ const AddComponent = (props: any) => {
                         color: 'text.secondary'
                     },
                     '& .req-input': {
-                        width: 454
+                        width: isMobile ? 'auto' : 454
                     }
                 }}
             >
-                <Stack direction="row" gap={9.5}>
+                <Stack direction={isMobile ? 'column' : 'row'} gap={isMobile ? 0 : 9.5}>
                     <Stack gap={1} width={198}>
                         <Typography className="req-title">Project *</Typography>
                         <Typography className="req-small-tle">This will be your profile name.</Typography>
@@ -106,7 +109,7 @@ const AddComponent = (props: any) => {
                         </Select>
                     </Stack>
                 </Stack>
-                <Stack direction="row" gap={9.5}>
+                <Stack direction={isMobile ? 'column' : 'row'} gap={isMobile ? 0 : 9.5}>
                     <Stack gap={1} width={198}>
                         <Typography className="req-title">Project Description *</Typography>
                         <Typography className="req-small-tle">Write briefly about your project</Typography>
@@ -126,7 +129,7 @@ const AddComponent = (props: any) => {
                         />
                     </Stack>
                 </Stack>
-                <Stack direction="row" gap={9.5}>
+                <Stack direction={isMobile ? 'column' : 'row'} gap={isMobile ? 0 : 9.5}>
                     <Stack gap={1} width={198}>
                         <Typography className="req-title">Project Status *</Typography>
                         <Typography className="req-small-tle">Mint Status or Project type</Typography>
@@ -149,7 +152,7 @@ const AddComponent = (props: any) => {
                         </Select>
                     </Stack>
                 </Stack>
-                <Stack direction="row" gap={9.5}>
+                <Stack direction={isMobile ? 'column' : 'row'} gap={isMobile ? 0 : 9.5}>
                     <Stack gap={1} width={198}>
                         <Typography className="req-title">Collab Status *</Typography>
                         <Typography className="req-small-tle">Open/Close collab</Typography>
@@ -172,7 +175,7 @@ const AddComponent = (props: any) => {
                         </Select>
                     </Stack>
                 </Stack>
-                <Stack direction="row" gap={9.5}>
+                <Stack direction={isMobile ? 'column' : 'row'} gap={isMobile ? 0 : 9.5}>
                     <Stack gap={1} width={198}>
                         <Typography className="req-title">User Type *</Typography>
                         <Typography className="req-small-tle">Project Admin/Influencer User</Typography>
@@ -195,12 +198,12 @@ const AddComponent = (props: any) => {
                         </Select>
                     </Stack>
                 </Stack>
-                <Stack direction="row" gap={9.5}>
+                <Stack direction={isMobile ? 'column' : 'row'} gap={isMobile ? 0 : 9.5}>
                     <Stack gap={1} width={198}>
                         <Typography className="req-title">Twitter Link</Typography>
                         <Typography className="req-small-tle">Your project’s twitter profile</Typography>
                     </Stack>
-                    <Stack justifyContent="center" alignItems="center">
+                    <Stack>
                         <Stack>https://twitter.com/</Stack>
                         <TextField
                             hiddenLabel
@@ -213,12 +216,12 @@ const AddComponent = (props: any) => {
                         />
                     </Stack>
                 </Stack>
-                <Stack direction="row" gap={9.5}>
+                <Stack direction={isMobile ? 'column' : 'row'} gap={isMobile ? 0 : 9.5}>
                     <Stack gap={1} width={198}>
                         <Typography className="req-title">Discord Link</Typography>
                         <Typography className="req-small-tle">Your project’s discord invite</Typography>
                     </Stack>
-                    <Stack justifyContent="center" alignItems="center">
+                    <Stack>
                         <Stack>https://discord.gg/</Stack>
                         <TextField
                             hiddenLabel
@@ -301,19 +304,17 @@ const AddProject = () => {
     }, [socket, form]);
 
     return (
-        <>
-            <Stack gap={4}>
-                <Stack direction="row" gap="12px" sx={{ cursor: 'pointer' }} onClick={() => navigate('/collab')}>
-                    <Typography color="grey.100">{`<`}</Typography>
-                    <Typography color="grey.100">Go Back</Typography>
-                </Stack>
-                {page === 1 && <AddComponent form={form} setForm={setForm} setPage={setPage} />}
-                {page === 2 && <RequestBot checked={checked} handleClick={handleImportBotClick} handleChange={handleChange} />}
-                {page === 3 && <Pending />}
-                {page === 4 && <SuccessFull roleoptions={roleoptions} form={form} setForm={setForm} handleClick={handleUpdateClick} />}
-                {page === 5 && <Reject />}
+        <Stack gap={4}>
+            <Stack direction="row" gap="12px" sx={{ cursor: 'pointer' }} onClick={() => navigate('/collab')}>
+                <Typography color="grey.100">{`<`}</Typography>
+                <Typography color="grey.100">Go Back</Typography>
             </Stack>
-        </>
+            {page === 1 && <AddComponent form={form} setForm={setForm} setPage={setPage} />}
+            {page === 2 && <RequestBot checked={checked} handleClick={handleImportBotClick} handleChange={handleChange} />}
+            {page === 3 && <Pending />}
+            {page === 4 && <SuccessFull roleoptions={roleoptions} form={form} setForm={setForm} handleClick={handleUpdateClick} />}
+            {page === 5 && <Reject />}
+        </Stack>
     );
 };
 export default AddProject;

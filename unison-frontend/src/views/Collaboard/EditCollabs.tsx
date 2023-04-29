@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Button, Divider, Stack, Typography, Select, MenuItem, TextField } from '@mui/material';
+import { Button, Divider, Stack, Typography, Select, MenuItem, TextField, useMediaQuery } from '@mui/material';
 
 import { useNavigate, useParams } from 'react-router-dom';
 import useApi from 'hooks/userApi';
@@ -9,6 +9,7 @@ import { ProjectStatusValue, CollabStatusValue, UserTypeValue } from 'components
 /*eslint-disable */
 
 const AddComponent = (props: any) => {
+    const isMobile = useMediaQuery('(max-width:768px)');
     const { form, setForm, servername, roleoptions, handleImportBotClick } = props;
 
     return (
@@ -22,13 +23,15 @@ const AddComponent = (props: any) => {
                         This information will be displayed publicly.
                     </Typography>
                 </Stack>
-                <Stack justifyContent="center">
+                <Stack justifyContent="center" sx={{ mt: isMobile ? 2 : 0 }}>
                     <Button
                         variant="contained"
                         color="primary"
                         size="medium"
                         sx={{ width: 110 }}
-                        disabled={ (form.serverId && form.description && form.projectStatus && form.collabStatus && form.userType) ? false : true }
+                        disabled={
+                            form.serverId && form.description && form.projectStatus && form.collabStatus && form.userType ? false : true
+                        }
                         onClick={handleImportBotClick}
                     >
                         Update
@@ -284,24 +287,22 @@ const AddProject = () => {
     }, [id]);
 
     return (
-        <>
-            <Stack gap={4}>
-                <Stack direction="row" gap="12px" sx={{ cursor: 'pointer' }} onClick={() => goBack(false)}>
-                    <Typography color="grey.100">{`<`}</Typography>
-                    <Typography color="grey.100">Go Back</Typography>
-                </Stack>
-                {page === 1 && (
-                    <AddComponent
-                        roleoptions={roleoptions}
-                        form={form}
-                        setForm={setForm}
-                        servername={servername}
-                        handleImportBotClick={handleImportBotClick}
-                        setPage={setPage}
-                    />
-                )}
+        <Stack gap={4}>
+            <Stack direction="row" gap="12px" sx={{ cursor: 'pointer' }} onClick={() => goBack(false)}>
+                <Typography color="grey.100">{`<`}</Typography>
+                <Typography color="grey.100">Go Back</Typography>
             </Stack>
-        </>
+            {page === 1 && (
+                <AddComponent
+                    roleoptions={roleoptions}
+                    form={form}
+                    setForm={setForm}
+                    servername={servername}
+                    handleImportBotClick={handleImportBotClick}
+                    setPage={setPage}
+                />
+            )}
+        </Stack>
     );
 };
 export default AddProject;

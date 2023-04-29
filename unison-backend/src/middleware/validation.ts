@@ -33,7 +33,6 @@ export const Validator = {
         id: Joi.string().max(20).required(),
         accessToken: Joi.string().required(),
         username: Joi.string().required(),
-        // avatar: Joi.string().required(),
         avatar_decoration: Joi.string().allow('', null).optional(),
         discriminator: Joi.string().required(),
         public_flags: Joi.number().required(),

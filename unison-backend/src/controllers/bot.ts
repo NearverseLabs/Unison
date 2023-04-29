@@ -41,8 +41,11 @@ const client = new Client({
 });
 
 const TOKEN =
-  'MTA5MjcyODc1NjEwOTU5NDY3NA.G1lVgK.fFxYDGNGnuTKOkGBOKyaePO68nJpn27AEaRQrU';
-const CLIENT_ID = '1092728756109594674';
+  'MTEwMTc0NjM1NDc3MjAwMDc3OA.Gcnx1a.4_yMxDWoCR7DmdZQj67XiKSK9NpunhZk9leYJA';
+const CLIENT_ID = '1101746354772000778';
+// const TOKEN =
+//   'MTA5MjcyODc1NjEwOTU5NDY3NA.G1lVgK.fFxYDGNGnuTKOkGBOKyaePO68nJpn27AEaRQrU';
+// const CLIENT_ID = '1092728756109594674';
 
 export const connectBOT = async () => {
   client.on(Events.ClientReady, async () => {
@@ -65,9 +68,7 @@ export const connectBOT = async () => {
   (async () => {
     try {
       console.log('Started refreshing application (/) commands.');
-
       await rest.put(Routes.applicationCommands(CLIENT_ID), { body: commands });
-
       console.log('Successfully reloaded application (/) commands.');
     } catch (error) {
       console.error(error);
@@ -96,24 +97,13 @@ export const connectBOT = async () => {
 
   client.on(Events.GuildMemberAdd, async (member: any) => {
     let { user, guild } = member;
-    console.log(user);
-    console.log(guild.id);
     await assignRolebyuserid({
       userId: user.id,
       serverId: guild.id,
       mber: member
     });
   });
-
-  // const e_ = Object(Events)
-  // for (let i in e_) {
-  //   client.on(e_[i], async (member: any) => {
-  //     console.log(e_[i])
-  //     // console.log(member)
-  //   })
-  // }
   client.on(Events.GuildCreate, async (member: any) => {
-    console.log(member.id);
     checkerproject({ id: member.id });
   });
 
@@ -145,7 +135,6 @@ export const checkerproject = async ({ id }: any) => {
     if (nproject) {
       const roleoptions: any = await getRolebyServerId(nproject.serverId);
       const io = getSocket();
-      console.log(io);
       io.sockets.emit('addproject', { [nproject.serverId]: roleoptions });
     }
   }
@@ -221,10 +210,6 @@ export const getPicker = async (params: any) => {
 };
 
 export const getConverForm = ({ index, show, particis }: any) => {
-  // + "1. 'Naldo'#5521 (1 entry)"
-  // + "\n"
-  // + " 2. KitTian16#2938 (1 entry)"
-  // + "\n"
   const data = particis;
   let dstr: String = '';
   for (let i in data) {
@@ -259,7 +244,6 @@ export const ButtonCallback = async (interaction: any) => {
     const collabid = ObjectId(btnstr.split(':')[0]);
     const handlebtn = btnstr.split(':')[1];
     const projectid = btnstr.split(':')[2];
-    console.log(btnstr);
     switch (handlebtn) {
       case 'picker':
         const pickers = await setPicker({ collabid, user: interaction.user });
@@ -318,14 +302,9 @@ export const ModalCallback = async (interaction: any) => {
       });
       if (particis2) {
         await interaction.update(particis2);
-      } else {
-        // await interaction.reply({ content: 'please enter valid pagenumber.' });
       }
     }
   }
-
-  // await interaction.reply({ content: 'Your submission was received successfully!' });
-  // }
 };
 
 export const participantData = async ({
@@ -520,13 +499,9 @@ export const setWhitelist = async ({
       }
     }
   ]);
-
-  console.log(projectid, '--projectid--');
-
   const projectitem = await Guilds.findOne({ id: projectid });
   const collab = clbs[0];
   const projectname = projectitem ? projectitem.name : '';
-  console.log(projectname);
   const winners = collab.openedSpots;
   const time = collab.enddate;
   const row: any = new ActionRowBuilder().addComponents([
@@ -542,7 +517,6 @@ export const setWhitelist = async ({
       .setStyle(ButtonStyle.Secondary)
       .setEmoji('👤')
   ]);
-  // const init = new Date(new Date(time).valueOf() + 3 * 3600 * 1000)
   const init = new Date(time);
   const { expiretime, expiretimemin } = ConverToTime(
     (init.valueOf() - new Date().valueOf()) / 1000 / 60
@@ -585,26 +559,17 @@ export const showGotopgaeModal = async (interaction: any, collabid: any) => {
   const modal = new ModalBuilder()
     .setCustomId(`${collabid}:gotopagemodal`)
     .setTitle('Go To Page');
-
-  // Add components to modal
   const PagenumberInput = new TextInputBuilder()
     .setCustomId(`pagenumberinput`)
     .setLabel('PAGE NUMNBER')
     .setRequired(true)
     .setPlaceholder('Enter a page number')
     .setStyle(TextInputStyle.Short);
-
-  // An action row only holds one text input,
-  // so you need one action row per text input.
   const pagenumberActionRow = new ActionRowBuilder().addComponents(
     PagenumberInput
   );
-
-  // Add inputs to the modal
   const rows: any = [pagenumberActionRow];
   modal.addComponents(rows);
-
-  // Show the modal to the user
   await interaction.showModal(modal);
 };
 
@@ -667,7 +632,6 @@ export const assignRolebyuserid = async ({ serverId, userId, mber }: any) => {
 };
 
 export const assignRolesbyids = async ({ serverId, roleId, winners }: any) => {
-  // const roles = await guild.roles.cache.get("1091347832834883655")
   let guild = client.guilds.cache.get(serverId);
   const roles = await guild.roles.cache.get(roleId);
   let res = await guild.members.fetch();
@@ -675,7 +639,6 @@ export const assignRolesbyids = async ({ serverId, roleId, winners }: any) => {
     const mber = member as GuildMember;
     if (winners.find((obj: any) => obj.userId == mber.user.id)) {
       try {
-        console.log(mber.user.username);
         await mber.roles.add(roles.id);
       } catch (error) {}
     }
@@ -698,7 +661,6 @@ export const FetchEndcollab = async () => {
     const item = endcollabs[i];
     const collabid = item._id;
     let channelId = '';
-    // let serverId = ""
     let roleId: any = '';
 
     const pjitem: any = await Projects.findOne({
@@ -711,15 +673,10 @@ export const FetchEndcollab = async () => {
       projectid = item.requestBy.projectName;
       channelId = item.projectId.channelId;
     } else {
-      // serverId = item.projectId.serverId
       projectid = item.projectId.serverId;
       channelId = pjitem.channelId;
       roleId = item.projectId.roleId;
-
-      // serverId = pjitem.serverId
     }
-
-    // }
     const pickers = await getPicker(collabid);
     const { winnersstr, winners } = await getWinners({
       collabid,
@@ -738,11 +695,6 @@ export const FetchEndcollab = async () => {
       if (item.messageId) {
         channel.messages.fetch(item.messageId).then((msg) => msg.edit(wdata));
       }
-      // if (item.collabType == 1) {
-      //   await assignRolesbyids({ winners, serverId, roleId })
-      // } else {
-      // }
-      console.log(projectid, roleId, '--serverId, roleId--');
       if (roleId & roleId.length) {
         await setWinners({ serverId: projectid, winners, collabid });
         await assignRolesbyids({ winners, serverId: projectid, roleId });
@@ -784,8 +736,6 @@ export const FetchCountDownCollab = async () => {
       projectid = item.projectId.serverId;
       channelId = pjitem.channelId;
     }
-
-    // }
     const pickers = await getPicker(collabid);
     const wdata = await setWhitelist({
       collabid,

@@ -1,10 +1,12 @@
 import { useMemo } from 'react';
 import { Outlet } from 'react-router-dom';
-import { AppBar, Box, CssBaseline, Toolbar, Stack } from '@mui/material';
+import { AppBar, Box, CssBaseline, Toolbar, Stack, useMediaQuery } from '@mui/material';
 import Header from './Header';
 import Sidebar from './Sidebar';
 
 const MainLayout = () => {
+    const isMobile = useMediaQuery('(max-width:768px)');
+
     const header = useMemo(
         () => (
             <Toolbar sx={{ height: '100%' }}>
@@ -21,18 +23,20 @@ const MainLayout = () => {
                 {header}
             </AppBar>
             <Stack flexDirection="row">
-                <AppBar
-                    sx={{ width: 262, bgcolor: 'white', height: 'calc(100vh - 96px)' }}
-                    color="inherit"
-                    component="nav"
-                    elevation={0}
-                    position="relative"
-                >
-                    <Sidebar />
-                </AppBar>
+                {!isMobile && (
+                    <AppBar
+                        sx={{ width: 262, bgcolor: 'white', height: 'calc(100vh - 96px)' }}
+                        color="inherit"
+                        component="nav"
+                        elevation={0}
+                        position="relative"
+                    >
+                        <Sidebar />
+                    </AppBar>
+                )}
                 <Box
                     sx={{
-                        width: '87%',
+                        width: isMobile ? '100%' : '87%',
                         bgcolor: '#FAFAFA',
                         padding: 4,
                         height: 'calc(100vh - 96px)',

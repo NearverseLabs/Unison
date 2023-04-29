@@ -92,78 +92,76 @@ const EngagePage = () => {
     const handleAddNewCampaign = () => navigate('new_campaign');
 
     return (
-        <>
-            <Stack gap={4}>
-                <Stack
-                    sx={{
-                        gap: 2,
-                        width: '100%',
-                        justifyContent: 'space-between',
-                        flexDirection: 'row'
-                    }}
-                >
-                    {component === 'LiveCampaigns' ? (
-                        <Search>
-                            <SearchIconWrapper>
-                                <SearchIcon />
-                            </SearchIconWrapper>
-                            <StyledInputBase placeholder="Search…" inputProps={{ 'aria-label': 'search' }} />
-                        </Search>
-                    ) : (
-                        <Stack direction="row" justifyContent="space-between">
-                            <Stack gap="14px">
-                                <Typography color="text.primary" sx={{ fontSize: 24, fontWeight: 600 }}>
-                                    {component}
-                                </Typography>
-                                <Typography color="text.secondary" sx={{ fontSize: 14, fontWeight: 400 }}>
-                                    This information will be displayed publicly.
-                                </Typography>
-                            </Stack>
+        <Stack gap={4}>
+            <Stack
+                sx={{
+                    gap: 2,
+                    width: '100%',
+                    justifyContent: 'space-between',
+                    flexDirection: 'row'
+                }}
+            >
+                {component === 'LiveCampaigns' ? (
+                    <Search>
+                        <SearchIconWrapper>
+                            <SearchIcon />
+                        </SearchIconWrapper>
+                        <StyledInputBase placeholder="Search…" inputProps={{ 'aria-label': 'search' }} />
+                    </Search>
+                ) : (
+                    <Stack direction="row" justifyContent="space-between">
+                        <Stack gap="14px">
+                            <Typography color="text.primary" sx={{ fontSize: 24, fontWeight: 600 }}>
+                                {component}
+                            </Typography>
+                            <Typography color="text.secondary" sx={{ fontSize: 14, fontWeight: 400 }}>
+                                This information will be displayed publicly.
+                            </Typography>
                         </Stack>
-                    )}
-
-                    <Stack flexDirection="row" gap={3}>
-                        <Select
-                            displayEmpty
-                            onChange={handleChange}
-                            input={<OutlinedInput />}
-                            renderValue={(selected) => <>Manager</>}
-                            MenuProps={MenuProps}
-                            inputProps={{ 'aria-label': 'Without label' }}
-                            sx={{
-                                width: 145,
-                                height: 42,
-                                borderRadius: '6px',
-                                padding: '12px 18px 12px 24px',
-                                border: '1px solid #000000',
-                                '& .MuiPaper-root': {
-                                    width: 160,
-                                    ml: '95px'
-                                },
-                                '& .MuiSelect-select': {
-                                    margin: 0,
-                                    padding: '0 !important'
-                                }
-                            }}
-                        >
-                            {names.map((row) => (
-                                <MenuItem key={row.label} value={row.label} style={getStyles(row)} selected={row.active}>
-                                    {row.label}
-                                </MenuItem>
-                            ))}
-                        </Select>
-
-                        <Button variant="contained" color="primary" size="medium" sx={{ height: 42 }} onClick={handleAddNewCampaign}>
-                            + Create New Campaigns
-                        </Button>
                     </Stack>
+                )}
+
+                <Stack flexDirection="row" gap={3}>
+                    <Select
+                        displayEmpty
+                        onChange={handleChange}
+                        input={<OutlinedInput />}
+                        renderValue={(selected) => <>Manager</>}
+                        MenuProps={MenuProps}
+                        inputProps={{ 'aria-label': 'Without label' }}
+                        sx={{
+                            width: 145,
+                            height: 42,
+                            borderRadius: '6px',
+                            padding: '12px 18px 12px 24px',
+                            border: '1px solid #000000',
+                            '& .MuiPaper-root': {
+                                width: 160,
+                                ml: '95px'
+                            },
+                            '& .MuiSelect-select': {
+                                margin: 0,
+                                padding: '0 !important'
+                            }
+                        }}
+                    >
+                        {names.map((row) => (
+                            <MenuItem key={row.label} value={row.label} style={getStyles(row)} selected={row.active}>
+                                {row.label}
+                            </MenuItem>
+                        ))}
+                    </Select>
+
+                    <Button variant="contained" color="primary" size="medium" sx={{ height: 42 }} onClick={handleAddNewCampaign}>
+                        + Create New Campaigns
+                    </Button>
                 </Stack>
-                {component === 'LiveCampaigns' && <LiveCampaigns />}
-                {component === 'Expired' && <Expired />}
-                {component === 'Claimed' && <Claimed />}
-                {component === 'Unclaimed' && <Unclaimed />}
             </Stack>
-        </>
+            {component === 'LiveCampaigns' && <LiveCampaigns />}
+            {component === 'Expired' && <Expired />}
+            {component === 'Claimed' && <Claimed />}
+            {component === 'Unclaimed' && <Unclaimed />}
+        </Stack>
     );
 };
 export default EngagePage;

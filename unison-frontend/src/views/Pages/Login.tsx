@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Box, Button, Stack, Typography, useTheme } from '@mui/material';
+import { Box, Button, Stack, Typography, useMediaQuery, useTheme } from '@mui/material';
 
 import { BASE_PATH } from 'config';
 import { LogoIcon } from 'ui-component/SvgIcon';
@@ -12,6 +12,7 @@ import LanguageIcon from '@mui/icons-material/Language';
 
 const LoginPage = () => {
     const { goLoginDiscord } = useApi();
+    const isMobile = useMediaQuery('(max-width:768px)');
     const { isLoggedIn } = useSelector((state) => state.auth);
 
     const navigate = useNavigate();
@@ -32,9 +33,9 @@ const LoginPage = () => {
         <Stack
             sx={{
                 bgcolor: 'white',
-                flexDirection: 'row',
+                flexDirection: isMobile ? 'column' : 'row',
+                height: isMobile ? '100%' : '100vh',
                 width: '100vw',
-                height: '100vh',
                 p: 3,
                 position: 'relative'
             }}
@@ -42,7 +43,7 @@ const LoginPage = () => {
             <Stack
                 sx={{
                     bgcolor: palette.common.black,
-                    width: 455,
+                    maxWidth: isMobile ? '100%' : 455,
                     height: '100%',
                     alignItems: 'center',
                     gap: 3,
@@ -110,7 +111,8 @@ const LoginPage = () => {
             </Stack>
             <Stack
                 sx={{
-                    width: '74%',
+                    py: isMobile ? 10 : 0,
+                    width: isMobile ? '100%' : '74%',
                     justifyContent: 'center',
                     alignItems: 'center'
                 }}
@@ -154,7 +156,7 @@ const LoginPage = () => {
                             fontSize: 16,
                             fontWeight: 700,
                             borderRadius: '6px',
-                            width: 305,
+                            width: isMobile ? '100%' : 305,
                             lineHeight: '160%'
                         }}
                     >

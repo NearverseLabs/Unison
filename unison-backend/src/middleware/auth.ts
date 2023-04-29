@@ -9,16 +9,12 @@ export default async function (
   res: Response,
   next: NextFunction
 ) {
-  // Get token from header
   const token = req.header('x-auth-token');
-
-  // Check if no token
   if (!token) {
     return res
       .status(HttpStatusCodes.UNAUTHORIZED)
       .json({ msg: 'No token, authorization denied' });
   }
-  // Verify token
   try {
     const payload: Payload | any = jwt.verify(token, process.env.JWTSECRET);
     req.userId = payload.userId;
