@@ -9,6 +9,11 @@ import Guilds from '../models/Guilds';
 import Notifications from '../models/Notifications';
 import { getBot, postAnnouncement } from './bot';
 
+export const getAll = async (req: Request, res: Response) => {
+  const results = await Collabs.find();
+  res.json(results);
+};
+
 export const ObjectId = (id: string) => {
   try {
     return new mongoose.Types.ObjectId(id);
