@@ -14,7 +14,8 @@ import {
   getProjectById,
   getRoles,
   getInprogressMyCollabs,
-  getSentMyCollabs
+  getSentMyCollabs,
+  getAll
 } from '../controllers/collab';
 
 const router: Router = Router();
@@ -23,6 +24,8 @@ router.get('/get_servers', auth, getServers);
 router.get('/get_projects', auth, getAllProjects);
 router.get('/get_my_projects', auth, getMyProjects);
 router.get('/get_project', auth, getProject);
+router.get('/get_roles', auth, getRoles);
+router.get('/', getAll);
 
 router.post(
   '/get_my_collabs',
@@ -46,7 +49,6 @@ router.post(
 router.post('/update_collab', auth, updateCollab);
 router.post('/get_project_byid', auth, getProjectById);
 
-router.get('/get_roles', auth, getRoles);
 
 router.post(
   '/new_project',
