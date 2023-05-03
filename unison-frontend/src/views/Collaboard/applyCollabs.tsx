@@ -83,8 +83,8 @@ const ApplyCollabs = () => {
         const ops = [];
         let i = 0;
         while (i !== 100) {
-            i += 1;
             ops.push({ id: i, name: i > 9 ? `${i}` : `0${i}` });
+            i += 1;
         }
         return ops;
     };
