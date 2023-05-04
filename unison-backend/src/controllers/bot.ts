@@ -618,10 +618,13 @@ export const setWinners = async ({ serverId, winners }: any) => {
 };
 
 export const assignRolebyuserid = async ({ serverId, userId, mber }: any) => {
+  console.log(serverId, userId,"serverId, userId");
   let winer = await Winners.findOne({ serverId, userId });
   if (winer) {
+    console.log(winer,"--winer--")
     let pitem = await Projects.findOne({ serverId });
     if (pitem) {
+      console.log(pitem,"--pitem----")
       await mber.roles.add(pitem.roleId);
     }
   }
