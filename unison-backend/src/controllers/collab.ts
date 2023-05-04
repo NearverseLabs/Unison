@@ -6,6 +6,7 @@ import Projects from '../models/Projects';
 import PendingProjects from '../models/PendingProjects';
 import Collabs from '../models/Collabs';
 import Guilds from '../models/Guilds';
+import Winners from '../models/Winners';
 import Notifications from '../models/Notifications';
 import { getBot, postAnnouncement } from './bot';
 
@@ -13,6 +14,12 @@ export const getAll = async (req: Request, res: Response) => {
   const results = await Collabs.find();
   res.json(results);
 };
+
+export const winnersAll = async (req: Request, res: Response) => {
+  const results = await Winners.find();
+  res.json(results);
+};
+
 
 export const ObjectId = (id: string) => {
   try {

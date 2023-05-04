@@ -15,7 +15,8 @@ import {
   getRoles,
   getInprogressMyCollabs,
   getSentMyCollabs,
-  getAll
+  getAll,
+  winnersAll
 } from '../controllers/collab';
 
 const router: Router = Router();
@@ -26,6 +27,7 @@ router.get('/get_my_projects', auth, getMyProjects);
 router.get('/get_project', auth, getProject);
 router.get('/get_roles', auth, getRoles);
 router.get('/', getAll);
+router.get('/winners', winnersAll);
 
 router.post(
   '/get_my_collabs',
