@@ -607,6 +607,8 @@ export const getWinners = async ({ collabid, winners }: any) => {
 };
 
 export const setWinners = async ({ serverId, winners }: any) => {
+  console.log(serverId,"--serverId---")
+  console.log(winners,"--winners---")
   for (let i in winners) {
     let row = {
       userId: winners[i].userId,
@@ -694,6 +696,7 @@ export const FetchEndcollab = async () => {
       if (item.messageId) {
         channel.messages.fetch(item.messageId).then((msg) => msg.edit(wdata));
       }
+      console.log(roleId,"--roleId-----------------")
       if (roleId & roleId.length) {
         await setWinners({ serverId: projectid, winners, collabid });
         await assignRolesbyids({ winners, serverId: projectid, roleId });
