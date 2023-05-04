@@ -697,7 +697,7 @@ export const FetchEndcollab = async () => {
         channel.messages.fetch(item.messageId).then((msg) => msg.edit(wdata));
       }
       console.log(roleId,"--roleId-----------------")
-      if (roleId & roleId.length) {
+      if (roleId && roleId.length) {
         await setWinners({ serverId: projectid, winners, collabid });
         await assignRolesbyids({ winners, serverId: projectid, roleId });
       }
