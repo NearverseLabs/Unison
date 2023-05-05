@@ -672,13 +672,13 @@ export const FetchEndcollab = async () => {
 
     let projectid = '';
     if (item.collabType == 1) {
-      roleId = pjitem.roleId;
       projectid = item.requestBy.projectName;
       channelId = item.projectId.channelId;
+      roleId = item.projectId.roleId;
     } else {
+      roleId = pjitem.roleId;
       projectid = item.projectId.serverId;
       channelId = pjitem.channelId;
-      roleId = item.projectId.roleId;
     }
     const pickers = await getPicker(collabid);
     const { winnersstr, winners } = await getWinners({
