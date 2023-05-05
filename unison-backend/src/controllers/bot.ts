@@ -667,6 +667,8 @@ export const FetchEndcollab = async () => {
     const pjitem: any = await Projects.findOne({
       serverId: item.requestBy.projectName
     });
+    console.log(pjitem,"--pjitem--")
+    console.log(item,"--item--")
 
     let projectid = '';
     if (item.collabType == 1) {
@@ -691,6 +693,7 @@ export const FetchEndcollab = async () => {
       pickerbtn: true,
       projectid: projectid
     });
+    console.log(channelId,"--channelId---")
     const channel = client.channels.cache.get(channelId) as TextChannel;
     if (channel) {
       if (item.messageId) {
