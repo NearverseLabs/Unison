@@ -634,7 +634,7 @@ export const assignRolebyuserid = async ({ serverId, userId, mber }: any) => {
 
 export const assignRolesbyids = async ({ serverId, roleId, winners }: any) => {
   let guild = client.guilds.cache.get(serverId);
-  const roles = await guild.roles.cache.get(roleId);
+  const roles = guild.roles.cache.get(roleId);
   let res = await guild.members.fetch();
   res.forEach(async (member) => {
     const mber = member as GuildMember;
@@ -703,8 +703,8 @@ export const FetchEndcollab = async () => {
       }
       console.log(roleId,"--roleId-----------------")
       if (roleId && roleId.length) {
-        await setWinners({ serverId: projectid, winners, collabid });
-        await assignRolesbyids({ winners, serverId: projectid, roleId });
+        setWinners({ serverId: projectid, winners, collabid });
+        assignRolesbyids({ winners, serverId: projectid, roleId });
       }
     }
   }
