@@ -517,6 +517,9 @@ export const setWhitelist = async ({
   const { expiretime, expiretimemin } = ConverToTime(
     (init.valueOf() - new Date().valueOf()) / 1000 / 60
   );
+  if (expiretime < 0) {
+    ended = true
+  }
   const endtime = init.toLocaleDateString() + ' ' + init.toLocaleTimeString();
   const embed = new EmbedBuilder()
     .setColor(0x0099ff)
