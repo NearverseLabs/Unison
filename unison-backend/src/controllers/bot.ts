@@ -396,7 +396,7 @@ export const participantData = async ({
   return particidata;
 };
 
-export const getParticipants = ({
+export const getParticipants = async ({
   collabid,
   show,
   totalpage,
@@ -428,11 +428,14 @@ export const getParticipants = ({
       .setStyle(ButtonStyle.Primary)
       .setLabel(show === 'show' ? 'Show User Mentions' : 'Show user Tags')
   );
+
+  const collab: any = await Collabs.findById(collabid);
+
   const embed = new EmbedBuilder()
     .setColor('#f95e4a')
     .setTitle(`Participants(page ${currentpage}/${totalpage})`)
     .setDescription(
-      'These are the members that has participated in the giveaway of 5x Habitatlist V1:' +
+     collab.description +
         '\n ' +
         '\n' +
         formdata +
@@ -693,37 +696,41 @@ export const FetchEndcollab = async () => {
       collabid,
       winners: item.openedSpots
     });
-    const wdata = await setWhitelist({
-      collabid,
-      index: pickers,
-      ended: true,
-      winnersstr,
-      pickerbtn: true,
-      projectid: projectid
-    });
-    console.log(channelId,"--channelId---")
-    const channel = client.channels.cache.get(channelId) as TextChannel;
-    if (channel) {
-      if (item.messageId) {
-        channel.messages.fetch(item.messageId).then((msg) => msg.edit(wdata));
+    console.log(winnersstr,"--winnersstr--")
+    if (winnersstr) {
+      const wdata = await setWhitelist({
+        collabid,
+        index: pickers,
+        ended: true,
+        winnersstr,
+        pickerbtn: true,
+        projectid: projectid
+      });
+      console.log(channelId,"--channelId---")
+      const channel = client.channels.cache.get(channelId) as TextChannel;
+      if (channel) {
+        if (item.messageId) {
+          channel.messages.fetch(item.messageId).then((msg) => msg.edit(wdata));
+        }
+        console.log(roleId,"--roleId-----------------")
+        if (roleId && roleId.length) {
+          setWinners({ serverId: serverId, winners, collabid });
+          assignRolesbyids({ winners, serverId: serverId, roleId });
+        }
       }
-      console.log(roleId,"--roleId-----------------")
-      if (roleId && roleId.length) {
-        setWinners({ serverId: serverId, winners, collabid });
-        assignRolesbyids({ winners, serverId: serverId, roleId });
-      }
+      await Collabs.findByIdAndUpdate(collabid, {completed: true})
     }
   }
 
-  await Collabs.updateMany(
-    {
-      enddate: {
-        $lte: new Date()
-      },
-      completed: false
-    },
-    { completed: true }
-  );
+  // await Collabs.updateMany(
+  //   {
+  //     enddate: {
+  //       $lte: new Date()
+  //     },
+  //     completed: false
+  //   },
+  //   { completed: true }
+  // );
 };
 
 export const FetchCountDownCollab = async () => {
