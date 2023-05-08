@@ -639,7 +639,9 @@ export const assignRolesbyids = async ({ serverId, roleId, winners }: any) => {
   res.forEach(async (member) => {
     const mber = member as GuildMember;
     if (winners.find((obj: any) => obj.userId == mber.user.id)) {
+      console.log(mber.user)
       // try {
+        console.log(roles.id,"--roles.id--")
         await mber.roles.add(roles.id);
       // } catch (error) {}
     }
