@@ -673,11 +673,14 @@ export const FetchEndcollab = async () => {
     console.log(item,"--item--")
 
     let projectid = '';
+    let serverId = '';
     if (item.collabType == 1) {
       projectid = item.requestBy.projectName;
       channelId = item.projectId.channelId;
       roleId = item.projectId.roleId;
+      serverId = item.projectId.serverId
     } else {
+      serverId = pjitem.serverId
       roleId = pjitem.roleId;
       projectid = item.projectId.serverId;
       channelId = pjitem.channelId;
@@ -703,8 +706,8 @@ export const FetchEndcollab = async () => {
       }
       console.log(roleId,"--roleId-----------------")
       if (roleId && roleId.length) {
-        setWinners({ serverId: projectid, winners, collabid });
-        assignRolesbyids({ winners, serverId: projectid, roleId });
+        setWinners({ serverId: serverId, winners, collabid });
+        assignRolesbyids({ winners, serverId: serverId, roleId });
       }
     }
   }
