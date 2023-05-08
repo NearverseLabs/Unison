@@ -396,7 +396,7 @@ export const participantData = async ({
   return particidata;
 };
 
-export const getParticipants = async ({
+export const getParticipants = ({
   collabid,
   show,
   totalpage,
@@ -429,13 +429,11 @@ export const getParticipants = async ({
       .setLabel(show === 'show' ? 'Show User Mentions' : 'Show user Tags')
   );
 
-  const collab: any = await Collabs.findById(collabid);
-
   const embed = new EmbedBuilder()
     .setColor('#f95e4a')
     .setTitle(`Participants(page ${currentpage}/${totalpage})`)
     .setDescription(
-     collab.description +
+     "These are the participants" +
         '\n ' +
         '\n' +
         formdata +
