@@ -634,15 +634,15 @@ export const assignRolebyuserid = async ({ serverId, userId, mber }: any) => {
 
 export const assignRolesbyids = async ({ serverId, roleId, winners }: any) => {
   let guild = client.guilds.cache.get(serverId);
-  const roles = guild.roles.cache.get(roleId);
+  // const roles = guild.roles.cache.get(roleId);
   let res = await guild.members.fetch();
   res.forEach(async (member) => {
     const mber = member as GuildMember;
     if (winners.find((obj: any) => obj.userId == mber.user.id)) {
       console.log(mber.user)
       // try {
-        console.log(roles.id,"--roles.id--")
-        await mber.roles.add(roles.id);
+        // console.log(roles.id,"--roles.id--")
+        await mber.roles.add(roleId);
       // } catch (error) {}
     }
   });
