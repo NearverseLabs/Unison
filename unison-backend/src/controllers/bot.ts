@@ -584,6 +584,7 @@ export const getWinners = async ({ collabid, winners }: any) => {
   const totalcount = await Customer.countDocuments({
     collabId: ObjectId(collabid)
   });
+  console.log(totalcount,"--totalcount--")
   if (totalcount <= winners) {
     wins = await Customer.find({ collabId: ObjectId(collabid) });
   } else {
