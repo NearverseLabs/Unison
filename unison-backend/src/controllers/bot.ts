@@ -585,30 +585,34 @@ export const getWinners = async ({ collabid, winners }: any) => {
     collabId: ObjectId(collabid)
   });
   console.log(totalcount,"--totalcount--")
-  if (totalcount <= winners) {
-    wins = await Customer.find({ collabId: ObjectId(collabid) });
+  if (totalcount > 0) {
+    if (totalcount <= winners) {
+      wins = await Customer.find({ collabId: ObjectId(collabid) });
+    } else {
+      let winnersindex: any = [];
+      while (winnersindex.length != winners) {
+        const randomindex = getRandomInt(0, totalcount - 1);
+        if (!winnersindex.find((obj: any) => obj == randomindex)) {
+          winnersindex.push(randomindex);
+        }
+      }
+      for (let i in winnersindex) {
+        const item = await Customer.findOne({
+          collabId: ObjectId(collabid)
+        }).skip(winnersindex[i]);
+        if (item) {
+          wins.push(item);
+        }
+      }
+    }
+    let winstr = '';
+    for (let i in wins) {
+      winstr += ' <@' + wins[i].userId + '>, ';
+    }
+    return { winnersstr: winstr.slice(0, winstr.length - 2), winners: wins };
   } else {
-    let winnersindex: any = [];
-    while (winnersindex.length != winners) {
-      const randomindex = getRandomInt(0, totalcount - 1);
-      if (!winnersindex.find((obj: any) => obj == randomindex)) {
-        winnersindex.push(randomindex);
-      }
-    }
-    for (let i in winnersindex) {
-      const item = await Customer.findOne({
-        collabId: ObjectId(collabid)
-      }).skip(winnersindex[i]);
-      if (item) {
-        wins.push(item);
-      }
-    }
+    return { winnersstr: "Any user didn't pick", winners: [] };
   }
-  let winstr = '';
-  for (let i in wins) {
-    winstr += ' <@' + wins[i].userId + '>, ';
-  }
-  return { winnersstr: winstr.slice(0, winstr.length - 2), winners: wins };
 };
 
 export const setWinners = async ({ serverId, winners }: any) => {
