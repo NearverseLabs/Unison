@@ -3,6 +3,7 @@ import HttpStatusCodes from 'http-status-codes';
 import jwt from 'jsonwebtoken';
 import { Payload, Request } from '../types';
 import User from '../models/Users';
+const JWTSECRET = "unison"
 
 export default async function (
   req: Request,
@@ -16,7 +17,7 @@ export default async function (
       .json({ msg: 'No token, authorization denied' });
   }
   try {
-    const payload: Payload | any = jwt.verify(token, process.env.JWTSECRET);
+    const payload: Payload | any = jwt.verify(token, JWTSECRET);
     req.userId = payload.userId;
     req.id = payload.id;
     const user = await User.findById(req.userId);

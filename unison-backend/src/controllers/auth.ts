@@ -3,6 +3,9 @@ import User from '../models/Users';
 import { Request, Payload } from '../types';
 import jwt from 'jsonwebtoken';
 
+const JWTSECRET = "unison"
+const JWTEXPIRATION = 3600000
+
 export const loginDiscord = async (req: Request, res: Response) => {
   let userData = req.body;
   const { id } = req.body;
@@ -24,8 +27,8 @@ export const loginDiscord = async (req: Request, res: Response) => {
 
       jwt.sign(
         payload,
-        process.env.JWTSECRET,
-        { expiresIn: process.env.JWTEXPIRATION },
+        JWTSECRET,
+        { expiresIn: JWTEXPIRATION },
         async (err, token) => {
           if (err) throw err;
           return res.json({ token, user });
@@ -45,8 +48,8 @@ export const loginDiscord = async (req: Request, res: Response) => {
 
       jwt.sign(
         payload,
-        process.env.JWTSECRET,
-        { expiresIn: process.env.JWTEXPIRATION },
+        JWTSECRET,
+        { expiresIn: JWTEXPIRATION },
         async (err, token) => {
           if (err) throw err;
           return res.json({ token, user });

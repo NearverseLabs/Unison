@@ -9,7 +9,7 @@ import connectSocket from '../src/controllers/socket';
 import Routes from './routes';
 import { RetrunValidation } from './middleware/validation';
 
-const port = process.env.PORT || 2003;
+const port = 2003;
 
 const app = express();
 const server = require('http').createServer(app);
