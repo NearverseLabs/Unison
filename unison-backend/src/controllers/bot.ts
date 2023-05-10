@@ -523,7 +523,7 @@ export const getWinners = async ({ collabid, winners }: any) => {
     }
     return { winnersstr: winstr.slice(0, winstr.length - 2), winners: wins }
   } else {
-    return { winnersstr: "Any user didn't pick", winners: [] };
+    return { winnersstr: "Could not pick", winners: [] };
 
   }
 }
