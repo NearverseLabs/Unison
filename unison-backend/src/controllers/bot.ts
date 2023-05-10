@@ -26,10 +26,10 @@ const client = new Client({
   ]
 });
 
-const TOKEN = "MTA5MjcyODc1NjEwOTU5NDY3NA.G1lVgK.fFxYDGNGnuTKOkGBOKyaePO68nJpn27AEaRQrU"
-const CLIENT_ID = "1092728756109594674"
-// const TOKEN = process.env.TOKEN as string;
-// const CLIENT_ID = process.env.CLIENT_ID as string;
+// const TOKEN = "MTA5MjcyODc1NjEwOTU5NDY3NA.G1lVgK.fFxYDGNGnuTKOkGBOKyaePO68nJpn27AEaRQrU"
+// const CLIENT_ID = "1092728756109594674"
+const TOKEN = process.env.TOKEN as string;
+const CLIENT_ID = process.env.CLIENT_ID as string;
 
 export const connectBOT = async () => {
   client.on(Events.ClientReady, async () => {
