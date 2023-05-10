@@ -646,9 +646,9 @@ export const FetchCountDownCollab = async () => {
   const endcollabs: any = await Collabs.find({
     completed: false,
     posted: true,
-    // enddate: {
-    //   $lte: new Date()
-    // },
+    enddate: {
+      $gte: new Date()
+    },
   }).populate("projectId", "channelId serverId roleId")
 
   for (let i in endcollabs) {
