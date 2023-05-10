@@ -106,7 +106,7 @@ export const connectBOT = async () => {
     FetchEndcollab()
   })
   sesjob.start()
-  const countdown = new CronJob('0 * * * * *', async function () {
+  const countdown = new CronJob('0 */1 * * * *', async function () {
     FetchInprogresscollab()
     FetchCountDownCollab()
   })
