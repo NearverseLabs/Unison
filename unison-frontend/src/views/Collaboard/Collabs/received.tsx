@@ -24,6 +24,7 @@ import useApi from 'hooks/userApi';
 import { CollabTypeValue, FormatValue, InFLCollabTypeValue, PageSize } from 'components';
 import { useSelector } from 'store';
 import ClearIcon from '@mui/icons-material/Clear';
+/*eslint-disable */
 
 const backgrounds: any = {
     0: 'orange',
@@ -247,9 +248,9 @@ const Received = () => {
                                     </TableCell>
                                     <TableCell>
                                         <Button variant="contained" size="small">
-                                            {row.project.userType === 1
-                                                ? CollabTypeValue[row.collabType - 1].name
-                                                : InFLCollabTypeValue[row.collabType - 1].name}
+                                            {
+                                                CollabTypeValue[row.collabType - 1].name
+                                            }
                                         </Button>
                                     </TableCell>
                                     <TableCell>
