@@ -239,9 +239,13 @@ const Received = () => {
                                     </TableCell>
                                     <TableCell>
                                         <Button variant="contained" size="small">
-                                            {row.project.userType === 1
+                                            {/* {row.project.userType === 1
                                                 ? CollabTypeValue[row.collabType - 1].name
                                                 : InFLCollabTypeValue[row.collabType - 1].name}
+                                                 */}
+                                                 {
+                                                    CollabTypeValue[row.collabType - 1].name
+                                                 }
                                         </Button>
                                     </TableCell>
                                     <TableCell>
