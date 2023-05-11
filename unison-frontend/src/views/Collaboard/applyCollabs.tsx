@@ -55,8 +55,7 @@ const ApplyCollabs = () => {
             setProject(data.project[0]);
             setForm({
                 ...form,
-                projectId: data.project[0]._id,
-                requestBy: { ...form.requestBy, projectName: mypro[0].id }
+                projectId: data.project[0]._id
             });
             setMyProject(mypro);
         }

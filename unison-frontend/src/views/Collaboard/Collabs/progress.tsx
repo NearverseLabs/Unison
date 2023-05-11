@@ -18,6 +18,10 @@ import {
 import DefaultImg from 'assets/images/project.svg';
 import useApi from 'hooks/userApi';
 import { CollabTypeValue, FormatValue, InFLCollabTypeValue, PageSize } from 'components';
+import Box from '@mui/material/Box';
+import ClearIcon from '@mui/icons-material/Clear';
+import Modal from '@mui/material/Modal';
+import TextareaAutosize from '@mui/material/TextareaAutosize';
 
 const Progress = () => {
     const { palette } = useTheme();
@@ -28,6 +32,15 @@ const Progress = () => {
     const [loading, setLoading] = useState(false);
     const [totalCount, setTotalCount] = useState(0);
     const [collabs, setCollabs] = useState<any[]>([]);
+    const [open, setOpen] = useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
+    const [collabitem, setCollabitem] = useState({
+        _id: '',
+        status: 0,
+        userId: '',
+        description: ''
+    });
 
     const getCollabs = async () => {
         setLoading(true);
@@ -153,7 +166,7 @@ const Progress = () => {
                                 <TableCell>Format</TableCell>
                                 <TableCell>Spots</TableCell>
                                 <TableCell>Requested By</TableCell>
-                                <TableCell>Status</TableCell>
+                                <TableCell>Actions</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
@@ -212,8 +225,16 @@ const Progress = () => {
                                     </TableCell>
                                     <TableCell>
                                         <Stack direction="row" gap={1.5}>
-                                            <Button variant="contained" size="small" sx={{ padding: '4px 16px' }}>
-                                                IN Progress
+                                            <Button
+                                                onClick={() => {
+                                                    handleOpen();
+                                                    setCollabitem(row);
+                                                }}
+                                                variant="contained"
+                                                size="small"
+                                                sx={{ padding: '4px 16px' }}
+                                            >
+                                                View Description
                                             </Button>
                                         </Stack>
                                     </TableCell>
@@ -234,6 +255,82 @@ const Progress = () => {
             )}
 
             <Divider />
+            <Modal open={open} onClose={handleClose} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
+                <Box
+                    sx={{
+                        position: 'absolute',
+                        top: '50%',
+                        left: '50%',
+                        minWidth: isMobile ? '85%' : 700,
+                        transform: 'translate(-50%, -50%)',
+                        bgcolor: 'background.paper',
+                        border: '1px solid #000',
+                        boxShadow: 24
+                    }}
+                >
+                    <Stack
+                        sx={{
+                            background: 'black',
+                            height: '40px',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'space-between',
+                            flexDirection: 'row',
+                            padding: '0 0.5rem'
+                        }}
+                    >
+                        <Typography style={{ color: 'white' }}>Approve/Reject Collab</Typography>
+                        <Typography sx={{ cursor: 'pointer' }} onClick={handleClose}>
+                            <ClearIcon />
+                        </Typography>
+                    </Stack>
+                    <Stack sx={{ padding: '1rem' }}>
+                        <Stack display="block">
+                            <Stack gap={1} sx={{ width: '100%' }}>
+                                <Typography className="req-title">Request Description/</Typography>
+                                <Typography className="req-title">Announcement Detail ( Form WL Collab)</Typography>
+                            </Stack>
+                            <Stack style={{ width: '100%' }}>
+                                <TextareaAutosize
+                                    style={{
+                                        font: 'inherit',
+                                        letterSpacing: 'inherit',
+                                        boxSizing: 'content-box',
+                                        background: 'none',
+                                        height: '2.4375em',
+                                        margin: '0',
+                                        display: 'block',
+                                        width: '100%',
+                                        animationDuration: '10ms',
+                                        color: '#54577A',
+                                        borderRadius: '4px',
+                                        overflow: 'auto'
+                                    }}
+                                    value={collabitem.description}
+                                    disabled
+                                />
+                            </Stack>
+                        </Stack>
+                        <Stack
+                            sx={{
+                                padding: '1rem',
+                                justifyContent: 'space-between'
+                            }}
+                            direction="row"
+                            gap={1.5}
+                        >
+                            <>
+                                <Button color="success" variant="contained" disabled size="small" sx={{ padding: '4px 16px' }}>
+                                    Approve
+                                </Button>
+                                <Button color="error" variant="contained" disabled size="small" sx={{ padding: '4px 16px' }}>
+                                    Reject
+                                </Button>
+                            </>
+                        </Stack>
+                    </Stack>
+                </Box>
+            </Modal>
         </>
     );
 };

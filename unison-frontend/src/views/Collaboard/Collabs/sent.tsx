@@ -244,9 +244,9 @@ const Received = () => {
                                                 ? CollabTypeValue[row.collabType - 1].name
                                                 : InFLCollabTypeValue[row.collabType - 1].name}
                                                  */}
-                                                 {
-                                                    CollabTypeValue[row.collabType - 1].name
-                                                 }
+                                            {
+                                                CollabTypeValue[row.collabType - 1].name
+                                            }
                                         </Button>
                                     </TableCell>
                                     <TableCell>
@@ -311,7 +311,7 @@ const Received = () => {
                         position: 'absolute',
                         top: '50%',
                         left: '50%',
-                        minWidth: isMobile ? '85%' : 400,
+                        minWidth: isMobile ? '85%' : 700,
                         transform: 'translate(-50%, -50%)',
                         bgcolor: 'background.paper',
                         border: '1px solid #000',

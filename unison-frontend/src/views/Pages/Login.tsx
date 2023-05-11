@@ -9,6 +9,8 @@ import useApi from 'hooks/userApi';
 import { useSelector } from 'store';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import LanguageIcon from '@mui/icons-material/Language';
+import Logo from 'assets/images/Logo_Transparent.png';
+/*eslint-disable */
 
 const LoginPage = () => {
     const { goLoginDiscord } = useApi();
@@ -95,7 +97,20 @@ const LoginPage = () => {
                             Discover and request collaborations with your favorite Projects and Influencers
                         </Typography>
                     </Stack>
-                    <Stack color={palette.common.white}>
+                    <Stack 
+                        color={palette.common.white}
+                        flexDirection="row"
+                        alignItems={'center'}
+                        justifyContent='center'
+                    >
+                        <Box
+                            component="img"
+                            src={Logo}
+                            sx={{
+                                height: '70px',
+                                width: '70px'
+                            }}
+                        />
                         <Typography
                             sx={{
                                 fontSize: 14,

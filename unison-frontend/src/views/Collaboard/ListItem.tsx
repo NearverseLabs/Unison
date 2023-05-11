@@ -6,6 +6,7 @@ import DefaultImage from 'assets/images/default.png';
 import { useNavigate } from 'react-router-dom';
 import { ProjectStatusValue, CollabStatusValue } from 'components';
 import { useSelector } from 'store';
+/*eslint-disable */
 
 const ListItem = ({ data }: { data: any }) => {
     const { palette } = useTheme();
@@ -83,7 +84,7 @@ const ListItem = ({ data }: { data: any }) => {
                     <Typography align={isMobile ? 'left' : 'center'} fontSize={16} fontWeight={700} mt={0.25}>
                         {data.server.name}
                     </Typography>
-                    <Typography align={isMobile ? 'left' : 'center'}>{data.description}</Typography>
+                    <Typography align={isMobile ? 'left' : 'center'} sx={{textOverflow:"ellipsis", overflow:"hidden", whiteSpace:"nowrap"}} >{data.description}</Typography>
                     {data.userType === 2 && (
                         <Stack
                             sx={{

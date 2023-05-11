@@ -203,8 +203,15 @@ const AddComponent = (props: any) => {
                         <Typography className="req-title">Twitter Link</Typography>
                         <Typography className="req-small-tle">Your project’s twitter profile</Typography>
                     </Stack>
-                    <Stack>
-                        <Stack>https://twitter.com/</Stack>
+                    <Stack flexDirection={"row"} justifyContent="center" alignItems={"center"}>
+                        <Stack sx={{
+                            justifyContent: "center",
+                            display: "flex",
+                            alignItems: "center",
+                            padding: "0.5rem"
+                        }}>
+                            <Typography className="req-title">http://</Typography>
+                        </Stack>
                         <TextField
                             hiddenLabel
                             value={form.twitterLink}
@@ -221,8 +228,15 @@ const AddComponent = (props: any) => {
                         <Typography className="req-title">Discord Link</Typography>
                         <Typography className="req-small-tle">Your project’s discord invite</Typography>
                     </Stack>
-                    <Stack>
-                        <Stack>https://discord.gg/</Stack>
+                    <Stack flexDirection={"row"} justifyContent="center" alignItems={"center"} >
+                        <Stack sx={{
+                            justifyContent: "center",
+                            display: "flex",
+                            alignItems: "center",
+                            padding: "0.5rem"
+                        }}>
+                            <Typography className="req-title">http://</Typography>
+                        </Stack>
                         <TextField
                             hiddenLabel
                             value={form.discordLink}
