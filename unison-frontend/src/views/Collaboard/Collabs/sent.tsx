@@ -23,6 +23,7 @@ import DefaultImg from 'assets/images/project.svg';
 import useApi from 'hooks/userApi';
 import { CollabTypeValue, FormatValue, InFLCollabTypeValue, PageSize } from 'components';
 import ClearIcon from '@mui/icons-material/Clear';
+/*eslint-disable */
 
 const backgrounds: any = {
     0: 'orange',
