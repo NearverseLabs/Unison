@@ -50,6 +50,7 @@ const Received = () => {
     const [pageSize, setPageSize] = useState(isMobile ? 2 : PageSize);
     const [loading, setLoading] = useState(false);
     const [open, setOpen] = useState(false);
+    const [winnerModal, setWinnerModal] = useState(false);
     const [totalCount, setTotalCount] = useState(0);
     const [collabs, setCollabs] = useState<any[]>([]);
     const [collabitem, setCollabitem] = useState({
@@ -58,6 +59,12 @@ const Received = () => {
         userId: '',
         description: ''
     });
+
+    const toggleModal = () => {
+        setWinnerModal(prev=>{
+            return !prev
+        })
+    }
 
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
@@ -280,17 +287,31 @@ const Received = () => {
                                     </TableCell>
                                     <TableCell>
                                         <Stack direction="row" gap={1.5}>
-                                            <Button
-                                                onClick={() => {
-                                                    handleOpen();
-                                                    setCollabitem(row);
-                                                }}
-                                                variant="contained"
-                                                size="small"
-                                                sx={{ padding: '4px 16px' }}
-                                            >
-                                                View Description
-                                            </Button>
+                                            {
+                                                row.status === 0 && FormatValue[row.format - 2].id === 3 ?
+                                                    <Button
+                                                        onClick={() => {
+                                                            handleOpen();
+                                                            setCollabitem(row);
+                                                        }}
+                                                        variant="contained"
+                                                        size="small"
+                                                        sx={{ padding: '4px 16px' }}
+                                                    >
+                                                        View Description
+                                                    </Button> :
+                                                    <Button
+                                                        onClick={() => {
+                                                            toggleModal();
+                                                            setCollabitem(row);
+                                                        }}
+                                                        variant="contained"
+                                                        size="small"
+                                                        sx={{ padding: '4px 16px' }}
+                                                    >
+                                                        Winners
+                                                    </Button>
+                                            }
                                         </Stack>
                                     </TableCell>
                                 </TableRow>
@@ -315,7 +336,7 @@ const Received = () => {
                         position: 'absolute',
                         top: '50%',
                         left: '50%',
-                        minWidth: isMobile ? '85%' : 700,
+                        minWidth: isMobile ? '85%' : 800,
                         transform: 'translate(-50%, -50%)',
                         bgcolor: 'background.paper',
                         border: '1px solid #000',
@@ -351,7 +372,7 @@ const Received = () => {
                                         letterSpacing: 'inherit',
                                         boxSizing: 'content-box',
                                         background: 'none',
-                                        height: '2.4375em',
+                                        height: '500px',
                                         margin: '0',
                                         display: 'block',
                                         width: '100%',
@@ -407,6 +428,43 @@ const Received = () => {
                                 </>
                             )}
                         </Stack>
+                    </Stack>
+                </Box>
+            </Modal>
+
+            <Modal open={winnerModal} onClose={toggleModal} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
+                <Box
+                    sx={{
+                        position: 'absolute',
+                        top: '0',
+                        right:'0',
+                        // left: '',
+                        minWidth: isMobile ? '85%' : 800,
+                        transform: 'translate(-50%, -50%)',
+                        bgcolor: 'background.paper',
+                        border: '1px solid #000',
+                        paddding:'2rem',
+                        boxShadow: 24
+                    }}
+                >
+                    <Stack
+                        sx={{
+                            background: 'black',
+                            height: '40px',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'space-between',
+                            flexDirection: 'row',
+                            padding: '0 0.5rem'
+                        }}
+                    >
+                        <Typography style={{ color: 'white' }}>Winners</Typography>
+                        <Typography sx={{ cursor: 'pointer' }} onClick={toggleModal}>
+                            <ClearIcon />
+                        </Typography>
+                    </Stack>
+                    <Stack sx={{ padding: '1rem' }}>
+                        
                     </Stack>
                 </Box>
             </Modal>

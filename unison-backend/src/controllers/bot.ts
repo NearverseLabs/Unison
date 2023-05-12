@@ -528,11 +528,12 @@ export const getWinners = async ({ collabid, winners }: any) => {
   }
 }
 
-export const setWinners = async ({ serverId, winners }: any) => {
+export const setWinners = async ({ serverId, winners, collabid }: any) => {
   for (let i in winners) {
     let row = {
       userId: winners[i].userId,
-      serverId
+      serverId,
+      collabId: ObjectId(collabid)
     }
     await Winners.findOneAndUpdate(row, row, { upsert: true, new: true })
   }

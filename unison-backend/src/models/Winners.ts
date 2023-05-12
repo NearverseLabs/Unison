@@ -8,7 +8,11 @@ const customerSchema = new Schema({
   serverId: {
     type: String,
     require: true
-  }
+  },
+  collabId: {
+    type: Schema.Types.ObjectId,
+    ref: 'collabs'
+  },
 });
 
 const Winners = model('winner', customerSchema);

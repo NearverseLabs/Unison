@@ -331,37 +331,57 @@ export const getMyCollabs = async (req: Request, res: Response) => {
       $unwind: '$user'
     },
     {
-      $project: {
-        _id: 1,
-        userId: 1,
-        collabType: 1,
-        format: 1,
-        openedSpots: 1,
-        requestBy: 1,
-        status: 1,
-        createdAt: 1,
-        description: 1,
-        server: {
-          id: 1,
-          name: 1,
-          icon: 1
-        },
-        project: {
-          userType: 1
-        },
-        rqserver: {
-          id: 1,
-          name: 1,
-          icon: 1
-        },
-        user: {
-          username: 1,
-          discriminator: 1,
-          userid: 1,
-          avatar: 1
-        }
+      $lookup: {
+        from: 'winners',
+        localField: '_id',
+        foreignField: 'collabId',
+        as: 'winner'
       }
     },
+    {
+      $lookup: {
+        from: 'users',
+        localField: 'winner.userId',
+        foreignField: 'userid',
+        as: 'winneruser'
+      }
+    },
+   
+    // {
+    //   $project: {
+    //     _id: 1,
+    //     userId: 1,
+    //     collabType: 1,
+    //     format: 1,
+    //     openedSpots: 1,
+    //     requestBy: 1,
+    //     status: 1,
+    //     createdAt: 1,
+    //     description: 1,
+    //     server: {
+    //       id: 1,
+    //       name: 1,
+    //       icon: 1
+    //     },
+    //     project: {
+    //       userType: 1
+    //     },
+    //     rqserver: {
+    //       id: 1,
+    //       name: 1,
+    //       icon: 1
+    //     },
+    //     user: {
+    //       username: 1,
+    //       discriminator: 1,
+    //       userid: 1,
+    //       avatar: 1
+    //     },
+    //     winner: {
+
+    //     }
+    //   }
+    // },
     {
       $sort: {
         createdAt: -1
