@@ -22,6 +22,7 @@ import Box from '@mui/material/Box';
 import ClearIcon from '@mui/icons-material/Clear';
 import Modal from '@mui/material/Modal';
 import TextareaAutosize from '@mui/material/TextareaAutosize';
+/*eslint-disable */
 
 const Progress = () => {
     const { palette } = useTheme();
@@ -202,9 +203,12 @@ const Progress = () => {
                                     </TableCell>
                                     <TableCell>
                                         <Button variant="contained" size="small">
-                                            {row.project.userType === 1
+                                            {/* {row.project.userType === 1
                                                 ? CollabTypeValue[row.collabType - 1].name
-                                                : InFLCollabTypeValue[row.collabType - 1].name}
+                                                : InFLCollabTypeValue[row.collabType - 1].name} */}
+                                            {
+                                                CollabTypeValue[row.collabType - 1].name
+                                            }
                                         </Button>
                                     </TableCell>
                                     <TableCell>
