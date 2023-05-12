@@ -135,9 +135,12 @@ const Received = () => {
                                 <Stack>
                                     <Typography>Type</Typography>
                                     <Button variant="contained" size="small">
-                                        {row.project.userType === 1
+                                        {/* {row.project.userType === 1
                                             ? CollabTypeValue[row.collabType - 1].name
-                                            : InFLCollabTypeValue[row.collabType - 1].name}
+                                            : InFLCollabTypeValue[row.collabType - 1].name} */}
+                                             {
+                                                CollabTypeValue[row.collabType - 1].name
+                                            }
                                     </Button>
                                 </Stack>
                                 <Stack>
