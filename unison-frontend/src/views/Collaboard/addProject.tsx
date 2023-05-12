@@ -210,7 +210,7 @@ const AddComponent = (props: any) => {
                             alignItems: "center",
                             padding: "0.5rem"
                         }}>
-                            <Typography className="req-title">http://</Typography>
+                            <Typography className="req-title">https://twitter.com/</Typography>
                         </Stack>
                         <TextField
                             hiddenLabel
@@ -235,7 +235,7 @@ const AddComponent = (props: any) => {
                             alignItems: "center",
                             padding: "0.5rem"
                         }}>
-                            <Typography className="req-title">http://</Typography>
+                            <Typography className="req-title">https://discord.gg/</Typography>
                         </Stack>
                         <TextField
                             hiddenLabel
