@@ -57,11 +57,12 @@ const Received = () => {
         _id: '',
         status: 0,
         userId: '',
-        description: ''
+        description: '',
+        winneruser: []
     });
 
     const toggleModal = () => {
-        setWinnerModal(prev=>{
+        setWinnerModal(prev => {
             return !prev
         })
     }
@@ -138,9 +139,9 @@ const Received = () => {
                                         {/* {row.project.userType === 1
                                             ? CollabTypeValue[row.collabType - 1].name
                                             : InFLCollabTypeValue[row.collabType - 1].name} */}
-                                             {
-                                                CollabTypeValue[row.collabType - 1].name
-                                            }
+                                        {
+                                            CollabTypeValue[row.collabType - 1].name
+                                        }
                                     </Button>
                                 </Stack>
                                 <Stack>
@@ -440,13 +441,13 @@ const Received = () => {
                     sx={{
                         position: 'absolute',
                         top: '0',
-                        right:'0',
+                        right: '0',
                         // left: '',
-                        minWidth: isMobile ? '85%' : 800,
-                        transform: 'translate(-50%, -50%)',
+                        minWidth: isMobile ? '85%' : 400,
+                        // transform: 'translate(-50%, -50%)',
                         bgcolor: 'background.paper',
                         border: '1px solid #000',
-                        paddding:'2rem',
+                        paddding: '2rem',
                         boxShadow: 24
                     }}
                 >
@@ -466,8 +467,17 @@ const Received = () => {
                             <ClearIcon />
                         </Typography>
                     </Stack>
-                    <Stack sx={{ padding: '1rem' }}>
-                        
+                    <Stack sx={{ padding: '1rem', display: "block" }}>
+                        {
+                            collabitem && collabitem.winneruser ?
+                                collabitem.winneruser.map((item:any, i) => (
+                                    <Stack sx={{ padding: '0.5rem 0' }} key={i} >
+                                        <Typography sx={{ cursor: 'pointer' }} >
+                                            {item.username}#{item.discriminator}
+                                        </Typography>
+                                    </Stack>
+                                )) : null
+                        }
                     </Stack>
                 </Box>
             </Modal>
