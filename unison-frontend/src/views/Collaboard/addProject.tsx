@@ -203,7 +203,7 @@ const AddComponent = (props: any) => {
                         <Typography className="req-title">Twitter Link</Typography>
                         <Typography className="req-small-tle">Your project’s twitter profile</Typography>
                     </Stack>
-                    <Stack flexDirection={"row"} justifyContent="center" alignItems={"center"}>
+                    <Stack className="req-input" flexDirection={"row"} justifyContent="center" alignItems={"center"}>
                         <Stack sx={{
                             justifyContent: "center",
                             display: "flex",
@@ -215,8 +215,10 @@ const AddComponent = (props: any) => {
                         <TextField
                             hiddenLabel
                             value={form.twitterLink}
-                            className="req-input"
                             size="small"
+                            sx={{
+                                width:"100%"
+                            }}
                             onChange={(e) => {
                                 setForm({ ...form, twitterLink: e.target.value });
                             }}
@@ -228,7 +230,7 @@ const AddComponent = (props: any) => {
                         <Typography className="req-title">Discord Link</Typography>
                         <Typography className="req-small-tle">Your project’s discord invite</Typography>
                     </Stack>
-                    <Stack flexDirection={"row"} justifyContent="center" alignItems={"center"} >
+                    <Stack className="req-input" flexDirection={"row"} justifyContent="center" alignItems={"center"} >
                         <Stack sx={{
                             justifyContent: "center",
                             display: "flex",
@@ -240,7 +242,9 @@ const AddComponent = (props: any) => {
                         <TextField
                             hiddenLabel
                             value={form.discordLink}
-                            className="req-input"
+                            sx={{
+                                width:"100%"
+                            }}
                             size="small"
                             onChange={(e) => {
                                 setForm({ ...form, discordLink: e.target.value });
