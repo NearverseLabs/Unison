@@ -183,17 +183,17 @@ const Received = () => {
                                                 >
                                                     Winners
                                                 </Button> :
-                                                <Button
-                                                    onClick={() => {
-                                                        toggleModal();
-                                                        setCollabitem(row);
-                                                    }}
-                                                    variant="contained"
-                                                    size="small"
-                                                    sx={{ padding: '4px 16px' }}
-                                                >
-                                                    Winners
-                                                </Button>
+                                                 <Button
+                                                 onClick={() => {
+                                                     handleOpen();
+                                                     setCollabitem(row);
+                                                 }}
+                                                 variant="contained"
+                                                 size="small"
+                                                 sx={{ padding: '4px 16px' }}
+                                             >
+                                                 View Description
+                                             </Button>
                                         }
                                     </Stack>
                                 </Stack>
@@ -315,14 +315,14 @@ const Received = () => {
                                                     </Button> :
                                                     <Button
                                                         onClick={() => {
-                                                            toggleModal();
+                                                            handleOpen();
                                                             setCollabitem(row);
                                                         }}
                                                         variant="contained"
                                                         size="small"
                                                         sx={{ padding: '4px 16px' }}
                                                     >
-                                                        Winners
+                                                        View Description
                                                     </Button>
                                             }
                                         </Stack>
