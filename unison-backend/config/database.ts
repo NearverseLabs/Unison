@@ -2,7 +2,7 @@ import mongoose, { connect } from 'mongoose';
 
 const connectDB = async () => {
   try {
-    const mongoURI: string = "mongodb://0.0.0.0:27017/unisonprod?serverSelectionTimeoutMS=5000&connectTimeoutMS=10000";
+    const mongoURI: string = "mongodb://0.0.0.0:27017/unisonprod1?serverSelectionTimeoutMS=5000&connectTimeoutMS=10000";
     mongoose.set('strictQuery', false);
     await connect(mongoURI);
     console.log('MongoDB Connected...');
