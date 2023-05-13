@@ -26,10 +26,10 @@ const client = new Client({
   ]
 });
 
-const TOKEN = "MTA5MjcyODc1NjEwOTU5NDY3NA.G1lVgK.fFxYDGNGnuTKOkGBOKyaePO68nJpn27AEaRQrU"
-const CLIENT_ID = "1092728756109594674"
-// const TOKEN = "MTEwMTg0NjUxNTUyMzI3MjczNQ.Gv34iC.TstxkXKa_-MpGHJe_xBHWgTdAU_9MyWEoJ7BZw";
-// const CLIENT_ID = "1101846515523272735";
+// const TOKEN = "MTA5MjcyODc1NjEwOTU5NDY3NA.G1lVgK.fFxYDGNGnuTKOkGBOKyaePO68nJpn27AEaRQrU"
+// const CLIENT_ID = "1092728756109594674"
+const TOKEN = "MTEwMTg0NjUxNTUyMzI3MjczNQ.Gv34iC.TstxkXKa_-MpGHJe_xBHWgTdAU_9MyWEoJ7BZw";
+const CLIENT_ID = "1101846515523272735";
 
 export const connectBOT = async () => {
   client.on(Events.ClientReady, async () => {
@@ -159,12 +159,16 @@ export const UpdateMessageId = async ({ collabid, messageId }: any) => {
 export const postAnnouncement = async ({ channelId, description, format, collabid, projectid }: any) => {
   try {
     const channel = client.channels.cache.get(channelId) as TextChannel;
-    if (format == 3) {
-      const wdata = await setWhitelist({ index: 0, collabid, ended: false, pickerbtn: false, projectid })
-      const msg = await channel.send(wdata)
-      await UpdateMessageId({ collabid, messageId: msg.id })
+    if (channel) {
+      if (format == 3) {
+        const wdata = await setWhitelist({ index: 0, collabid, ended: false, pickerbtn: false, projectid })
+        const msg = await channel.send(wdata)
+        await UpdateMessageId({ collabid, messageId: msg.id })
+      } else {
+        channel.send("@everyone " + description);
+      }
     } else {
-      channel.send("@everyone " + description);
+
     }
   } catch (error) {
     console.error(error);
