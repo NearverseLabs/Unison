@@ -41,7 +41,6 @@ export const FormatValue = [
     { id: 3, name: 'Raffle' }
 ];
 
-
 export const DisplayFormatValue = [
     { id: 2, name: 'FCFS' },
     { id: 3, name: 'Raffle' }
