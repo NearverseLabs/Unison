@@ -69,7 +69,7 @@ const Progress = () => {
             {isMobile ? (
                 <>
                     {collabs.map((row, i) => (
-                        <Card sx={{ p: 2 }}>
+                        <Card sx={{ p: 2 }} key={i}>
                             <Stack sx={{ flexWrap: 'wrap', flexDirection: 'row', gap: 2 }}>
                                 <Stack>
                                     <Typography>From</Typography>
@@ -134,12 +134,20 @@ const Progress = () => {
                                     </Stack>
                                 </Stack>
                                 <Stack>
-                                    <Typography>Status</Typography>
+                                    <Typography>Actions</Typography>
                                     <Stack direction="row" gap={1.5}>
-                                        <Button variant="contained" size="small" sx={{ padding: '4px 16px' }}>
-                                            IN Progress
-                                        </Button>
-                                    </Stack>
+                                            <Button
+                                                onClick={() => {
+                                                    handleOpen();
+                                                    setCollabitem(row);
+                                                }}
+                                                variant="contained"
+                                                size="small"
+                                                sx={{ padding: '4px 16px' }}
+                                            >
+                                                View Description
+                                            </Button>
+                                        </Stack>
                                 </Stack>
                             </Stack>
                         </Card>

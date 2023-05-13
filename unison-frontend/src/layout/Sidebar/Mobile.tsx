@@ -125,7 +125,7 @@ const Sidebar = () => {
                                     Having any trouble, queries or suggestions?
                                 </Typography>
                                 <Typography color="inherit" margin={0} padding={0} fontSize={12}>
-                                    Please contract us.
+                                    Please contact us.
                                 </Typography>
                             </Stack>
                             <Button
