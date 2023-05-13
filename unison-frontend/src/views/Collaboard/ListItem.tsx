@@ -85,13 +85,13 @@ const ListItem = ({ data }: { data: any }) => {
                     <Typography align={isMobile ? 'left' : 'center'} fontSize={16} fontWeight={700} mt={0.25}>
                         {data.server.name}
                     </Typography>
-                    <Typography align={isMobile ? 'left' : 'center'} sx={{textOverflow:"ellipsis", overflow:"hidden", height:"60px"}} >{data.description}</Typography>
+                    <Typography align={isMobile ? 'left' : 'center'} sx={{ textOverflow: "ellipsis", overflow: "hidden", height: "60px" }} >{data.description}</Typography>
                     {data.userType === 2 && (
                         <Stack
                             sx={{
                                 position: 'absolute',
                                 background: '#01C29A',
-                                top: '0',
+                                top: isMobile ? '-23px' : '0',
                                 right: '0',
                                 width: '110px',
                                 height: '28px',
@@ -106,7 +106,7 @@ const ListItem = ({ data }: { data: any }) => {
                             sx={{
                                 position: 'absolute',
                                 background: '#01C29A',
-                                top: '0',
+                                top: isMobile ? '-23px' : '0',
                                 right: '0',
                                 width: '110px',
                                 height: '28px',

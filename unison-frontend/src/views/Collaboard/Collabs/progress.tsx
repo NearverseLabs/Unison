@@ -304,7 +304,7 @@ const Progress = () => {
                                         letterSpacing: 'inherit',
                                         boxSizing: 'content-box',
                                         background: 'none',
-                                        height: '2.4375em',
+                                        height: isMobile ? '300px' : '500px',
                                         margin: '0',
                                         display: 'block',
                                         width: '100%',
