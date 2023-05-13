@@ -457,11 +457,11 @@ export const setWhitelist = async ({ index, collabid, ended, winnersstr, pickerb
   const embed = new EmbedBuilder()
     .setColor(0x0099FF)
     .setTitle('WL Raffle')
-    .setDescription(ended ? "Winners: " + winnersstr + '\n ' + endtime : 'Click 🎉 to enter \n Winners:' + winners + '\n Ends: `in ' + expiretime + 'hours ' + expiretimemin + 'mins `(Timer) \n ' + endtime);
+    .setDescription(ended ? "Winners: " + winnersstr + '\n ' + endtime : 'Click 🎉 to enter \n Winners:' + winners +   '\n Ends: `in ' + expiretime + 'hours ' + expiretimemin + 'mins ` \n ' + endtime + 'UTC');
 
   const content = "@everyone \n \n Description: " + collab.description +
     "\n Project Name: " + projectname +
-    "\n Winners: " + collab.openedSpots + "\n \n"
+    "\n Winners: " + collab.openedSpots + '\n Format: FCFS' +  "\n \n"
 
   return {
     content: content, ephemeral: true, embeds: [embed], components: [row]
