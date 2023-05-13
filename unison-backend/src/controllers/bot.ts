@@ -512,7 +512,8 @@ export const setFcfsAnouncement = async ({ collabid, projectid }: any) => {
   console.log(projectname)
   const content = "@everyone \n \n Description: " + collab.description +
     "\n Project Name: " + projectname +
-    "\n Winners: " + collab.openedSpots + 'Format: FCFS' + "\n \n"
+    "\n Winners: " + collab.openedSpots + 
+    '\n Format: FCFS' + "\n \n"
   return content
 }
 
