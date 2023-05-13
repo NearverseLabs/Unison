@@ -22,7 +22,7 @@ export default async function (
     req.id = payload.id;
     const user = await User.findById(req.userId);
     if (!user) {
-      return res.status(400).json('user is not exists');
+      return res.status(400).json('Please login again');
     }
     req.user = user;
     next();
