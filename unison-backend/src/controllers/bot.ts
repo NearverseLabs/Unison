@@ -28,7 +28,7 @@ const client = new Client({
 
 // const TOKEN = "MTA5MjcyODc1NjEwOTU5NDY3NA.G1lVgK.fFxYDGNGnuTKOkGBOKyaePO68nJpn27AEaRQrU"
 // const CLIENT_ID = "1092728756109594674"
-const TOKEN = "MTEwMTg0NjUxNTUyMzI3MjczNQ.Gv34iC.TstxkXKa_-MpGHJe_xBHWgTdAU_9MyWEoJ7BZw";
+const TOKEN = "MTEwNjk1MDE5NjIxMjAwNzEwNg.G5ws0o.SflDt_T5owDsVW5MDMznMtd4f1hFJXeKk18sxU";
 const CLIENT_ID = "1106950196212007106";
 
 export const connectBOT = async () => {
