@@ -511,17 +511,19 @@ export const getWinners = async ({ collabid, winners }: any) => {
     } else {
       let winnersindex: any = []
       while (winnersindex.length != winners) {
-        const randomindex = getRandomInt(0, totalcount - 1)
+        let randomindex = getRandomInt(0, totalcount - 1)
         if (!winnersindex.find((obj: any) => obj == randomindex)) {
           winnersindex.push(randomindex)
+          let item = await Customer.findOne({ collabId: ObjectId(collabid) }).skip(randomindex)
+          if (item) {
+            wins.push(item)
+          }
         }
       }
-      for (let i in winnersindex) {
-        const item = await Customer.findOne({ collabId: ObjectId(collabid) }).skip(winnersindex[i])
-        if (item) {
-          wins.push(item)
-        }
-      }
+      console.log(wins,"--------------------------winnersindex----------------------------------")
+      console.log(winnersindex,"--------------------------winnersindex----------------------------------")
+      // for (let i in winnersindex) {
+      // }
     }
     let winstr = ""
     for (let i in wins) {
