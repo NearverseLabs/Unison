@@ -25,7 +25,7 @@ axiosServices.interceptors.response.use(
         const { response } = error;
         if (response && response.status === 400) {
             snackbar({
-                message: 'Validation Error!',
+                message: 'Time out!',
                 content: response.data,
                 color: 'error',
                 variant: 'alert',
