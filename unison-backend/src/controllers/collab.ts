@@ -346,42 +346,44 @@ export const getMyCollabs = async (req: Request, res: Response) => {
         as: 'winneruser'
       }
     },
-   
-    // {
-    //   $project: {
-    //     _id: 1,
-    //     userId: 1,
-    //     collabType: 1,
-    //     format: 1,
-    //     openedSpots: 1,
-    //     requestBy: 1,
-    //     status: 1,
-    //     createdAt: 1,
-    //     description: 1,
-    //     server: {
-    //       id: 1,
-    //       name: 1,
-    //       icon: 1
-    //     },
-    //     project: {
-    //       userType: 1
-    //     },
-    //     rqserver: {
-    //       id: 1,
-    //       name: 1,
-    //       icon: 1
-    //     },
-    //     user: {
-    //       username: 1,
-    //       discriminator: 1,
-    //       userid: 1,
-    //       avatar: 1
-    //     },
-    //     winner: {
 
-    //     }
-    //   }
-    // },
+    {
+      $project: {
+        _id: 1,
+        userId: 1,
+        collabType: 1,
+        format: 1,
+        openedSpots: 1,
+        requestBy: 1,
+        status: 1,
+        createdAt: 1,
+        description: 1,
+        server: {
+          id: 1,
+          name: 1,
+          icon: 1
+        },
+        project: {
+          userType: 1
+        },
+        rqserver: {
+          id: 1,
+          name: 1,
+          icon: 1
+        },
+        user: {
+          username: 1,
+          discriminator: 1,
+          userid: 1,
+          avatar: 1
+        },
+        winneruser: {
+          id: 1,
+          username: 1,
+          discriminator: 1
+        },
+      }
+    },
     {
       $sort: {
         createdAt: -1
@@ -444,6 +446,23 @@ export const getSentMyCollabs = async (req: Request, res: Response) => {
       $unwind: '$user'
     },
     {
+      $lookup: {
+        from: 'winners',
+        localField: '_id',
+        foreignField: 'collabId',
+        as: 'winner'
+      }
+    },
+    {
+      $lookup: {
+        from: 'users',
+        localField: 'winner.userId',
+        foreignField: 'userid',
+        as: 'winneruser'
+      }
+    },
+
+    {
       $project: {
         _id: 1,
         userId: 1,
@@ -454,13 +473,13 @@ export const getSentMyCollabs = async (req: Request, res: Response) => {
         status: 1,
         createdAt: 1,
         description: 1,
-        project: {
-          userType: 1
-        },
         server: {
           id: 1,
           name: 1,
           icon: 1
+        },
+        project: {
+          userType: 1
         },
         rqserver: {
           id: 1,
@@ -472,7 +491,12 @@ export const getSentMyCollabs = async (req: Request, res: Response) => {
           discriminator: 1,
           userid: 1,
           avatar: 1
-        }
+        },
+        winneruser: {
+          id: 1,
+          username: 1,
+          discriminator: 1
+        },
       }
     },
     {
@@ -594,13 +618,13 @@ export const updateCollab = async (req: Request, res: Response) => {
   const collabitem = await Collabs.findById(_id);
   const enddate = new Date(
     new Date().valueOf() +
-      collabitem.expiretime * 3600 * 1000 +
-      collabitem.expiretimemin * 60 * 1000
+    collabitem.expiretime * 3600 * 1000 +
+    collabitem.expiretimemin * 60 * 1000
   );
   const inprogressdate =
     (format == 3 ? enddate.valueOf() : new Date().valueOf()) + 1000 * 60 * 5;
-    // const inprogressdate =
-    // (format == 3 ? enddate.valueOf() : new Date().valueOf()) + 3600 * 1000 * 24;
+  // const inprogressdate =
+  // (format == 3 ? enddate.valueOf() : new Date().valueOf()) + 3600 * 1000 * 24;
 
   const up: any = await (
     await Collabs.findByIdAndUpdate(_id, {

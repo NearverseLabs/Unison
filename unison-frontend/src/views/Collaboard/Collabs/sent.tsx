@@ -49,13 +49,21 @@ const Received = () => {
     const [open, setOpen] = useState(false);
     const [loading, setLoading] = useState(false);
     const [totalCount, setTotalCount] = useState(0);
+    const [winnerModal, setWinnerModal] = useState(false);
     const [collabs, setCollabs] = useState<any[]>([]);
     const [collabitem, setCollabitem] = useState({
         _id: '',
         status: 0,
         userId: '',
-        description: ''
+        description: '',
+        winneruser: []
     });
+
+    const toggleModal = () => {
+        setWinnerModal(prev => {
+            return !prev
+        })
+    }
 
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
@@ -161,17 +169,42 @@ const Received = () => {
                                 <Stack>
                                     <Typography>Actions</Typography>
                                     <Stack direction="row" gap={1.5}>
-                                        <Button
-                                            onClick={() => {
-                                                handleOpen();
-                                                setCollabitem(row);
-                                            }}
-                                            variant="contained"
-                                            size="small"
-                                            sx={{ padding: '4px 16px' }}
-                                        >
-                                            View Description
-                                        </Button>
+                                        {
+                                            FormatValue[row.format - 2] ?
+                                                row.status === 0 && FormatValue[row.format - 2].id === 3 ?
+                                                    <Button
+                                                        onClick={() => {
+                                                            handleOpen();
+                                                            setCollabitem(row);
+                                                        }}
+                                                        variant="contained"
+                                                        size="small"
+                                                        sx={{ padding: '4px 16px' }}
+                                                    >
+                                                        View Description
+                                                    </Button> :
+                                                    <Button
+                                                        onClick={() => {
+                                                            toggleModal();
+                                                            setCollabitem(row);
+                                                        }}
+                                                        variant="contained"
+                                                        size="small"
+                                                        sx={{ padding: '4px 16px' }}
+                                                    >
+                                                        Winners
+                                                    </Button> : <Button
+                                                        onClick={() => {
+                                                            handleOpen();
+                                                            setCollabitem(row);
+                                                        }}
+                                                        variant="contained"
+                                                        size="small"
+                                                        sx={{ padding: '4px 16px' }}
+                                                    >
+                                                    View Description
+                                                </Button>
+                                        }
                                     </Stack>
                                 </Stack>
                             </Stack>
@@ -276,17 +309,42 @@ const Received = () => {
                                     </TableCell>
                                     <TableCell>
                                         <Stack direction="row" gap={1.5}>
-                                            <Button
-                                                onClick={() => {
-                                                    handleOpen();
-                                                    setCollabitem(row);
-                                                }}
-                                                variant="contained"
-                                                size="small"
-                                                sx={{ padding: '4px 16px' }}
-                                            >
-                                                View Description
-                                            </Button>
+                                            {
+                                                FormatValue[row.format - 2] ?
+                                                    row.status === 0 && FormatValue[row.format - 2].id === 3 ?
+                                                        <Button
+                                                            onClick={() => {
+                                                                handleOpen();
+                                                                setCollabitem(row);
+                                                            }}
+                                                            variant="contained"
+                                                            size="small"
+                                                            sx={{ padding: '4px 16px' }}
+                                                        >
+                                                            View Description
+                                                        </Button> :
+                                                        <Button
+                                                            onClick={() => {
+                                                                toggleModal();
+                                                                setCollabitem(row);
+                                                            }}
+                                                            variant="contained"
+                                                            size="small"
+                                                            sx={{ padding: '4px 16px' }}
+                                                        >
+                                                            Winners
+                                                        </Button> : <Button
+                                                            onClick={() => {
+                                                                handleOpen();
+                                                                setCollabitem(row);
+                                                            }}
+                                                            variant="contained"
+                                                            size="small"
+                                                            sx={{ padding: '4px 16px' }}
+                                                        >
+                                                        View Description
+                                                    </Button>
+                                            }
                                         </Stack>
                                     </TableCell>
                                 </TableRow>
@@ -378,6 +436,52 @@ const Received = () => {
                                 </Button>
                             </>
                         </Stack>
+                    </Stack>
+                </Box>
+            </Modal>
+
+            <Modal open={winnerModal} onClose={toggleModal} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
+                <Box
+                    sx={{
+                        position: 'absolute',
+                        top: '0',
+                        right: '0',
+                        // left: '',
+                        minWidth: isMobile ? '85%' : 400,
+                        // transform: 'translate(-50%, -50%)',
+                        bgcolor: 'background.paper',
+                        border: '1px solid #000',
+                        paddding: '2rem',
+                        boxShadow: 24
+                    }}
+                >
+                    <Stack
+                        sx={{
+                            background: 'black',
+                            height: '40px',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'space-between',
+                            flexDirection: 'row',
+                            padding: '0 0.5rem'
+                        }}
+                    >
+                        <Typography style={{ color: 'white' }}>Winners</Typography>
+                        <Typography sx={{ cursor: 'pointer' }} onClick={toggleModal}>
+                            <ClearIcon />
+                        </Typography>
+                    </Stack>
+                    <Stack sx={{ padding: '1rem', display: "block" }}>
+                        {
+                            collabitem && collabitem.winneruser ?
+                                collabitem.winneruser.map((item: any, i) => (
+                                    <Stack sx={{ padding: '0.5rem 0' }} key={i} >
+                                        <Typography sx={{ cursor: 'pointer' }} >
+                                            {item.username}#{item.discriminator}
+                                        </Typography>
+                                    </Stack>
+                                )) : null
+                        }
                     </Stack>
                 </Box>
             </Modal>
