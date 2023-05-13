@@ -21,7 +21,7 @@ import {
 } from '@mui/material';
 import DefaultImg from 'assets/images/project.svg';
 import useApi from 'hooks/userApi';
-import { CollabTypeValue, DisplayFormatValue, InFLCollabTypeValue, PageSize } from 'components';
+import { CollabTypeValue, DisplayFormatValue, PageSize } from 'components';
 import { useSelector } from 'store';
 import ClearIcon from '@mui/icons-material/Clear';
 /*eslint-disable */

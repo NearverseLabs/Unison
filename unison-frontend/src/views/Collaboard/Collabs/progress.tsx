@@ -17,7 +17,7 @@ import {
 } from '@mui/material';
 import DefaultImg from 'assets/images/project.svg';
 import useApi from 'hooks/userApi';
-import { CollabTypeValue, DisplayFormatValue, InFLCollabTypeValue, PageSize } from 'components';
+import { CollabTypeValue, DisplayFormatValue, PageSize } from 'components';
 import Box from '@mui/material/Box';
 import ClearIcon from '@mui/icons-material/Clear';
 import Modal from '@mui/material/Modal';

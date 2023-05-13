@@ -21,7 +21,7 @@ import {
 } from '@mui/material';
 import DefaultImg from 'assets/images/project.svg';
 import useApi from 'hooks/userApi';
-import { CollabTypeValue, DisplayFormatValue, InFLCollabTypeValue, PageSize } from 'components';
+import { CollabTypeValue, DisplayFormatValue, PageSize } from 'components';
 import ClearIcon from '@mui/icons-material/Clear';
 /*eslint-disable */
 
@@ -128,9 +128,10 @@ const Received = () => {
                                 <Stack>
                                     <Typography>Type</Typography>
                                     <Button variant="contained" size="small">
-                                        {row.project.userType === 1
-                                            ? CollabTypeValue[row.collabType - 1].name
-                                            : InFLCollabTypeValue[row.collabType - 1].name}
+                                        
+                                            {
+                                                CollabTypeValue[row.collabType - 1].name
+                                            }
                                     </Button>
                                 </Stack>
                                 <Stack>
@@ -263,10 +264,7 @@ const Received = () => {
                                     </TableCell>
                                     <TableCell>
                                         <Button variant="contained" size="small">
-                                            {/* {row.project.userType === 1
-                                                ? CollabTypeValue[row.collabType - 1].name
-                                                : InFLCollabTypeValue[row.collabType - 1].name}
-                                                 */}
+                                          
                                             {
                                                 CollabTypeValue[row.collabType - 1].name
                                             }
