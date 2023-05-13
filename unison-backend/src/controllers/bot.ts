@@ -160,12 +160,14 @@ export const postAnnouncement = async ({ channelId, description, format, collabi
   try {
     const channel = client.channels.cache.get(channelId) as TextChannel;
     if (channel) {
-      if (format == 3) {
+      if (format == 3 ) {
         const wdata = await setWhitelist({ index: 0, collabid, ended: false, pickerbtn: false, projectid })
         const msg = await channel.send(wdata)
         await UpdateMessageId({ collabid, messageId: msg.id })
-      } else {
+      } else if (format == 2) {
         channel.send("@everyone " + description);
+      } else {
+        return
       }
     } else {
 
