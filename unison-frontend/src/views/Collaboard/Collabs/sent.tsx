@@ -169,40 +169,30 @@ const Received = () => {
                                 <Stack>
                                     <Typography>Actions</Typography>
                                     <Stack direction="row" gap={1.5}>
+
                                         {
-                                            FormatValue[row.format - 2] ?
-                                                row.status === 0 && FormatValue[row.format - 2].id === 3 ?
-                                                    <Button
-                                                        onClick={() => {
-                                                            handleOpen();
-                                                            setCollabitem(row);
-                                                        }}
-                                                        variant="contained"
-                                                        size="small"
-                                                        sx={{ padding: '4px 16px' }}
-                                                    >
-                                                        View Description
-                                                    </Button> :
-                                                    <Button
-                                                        onClick={() => {
-                                                            toggleModal();
-                                                            setCollabitem(row);
-                                                        }}
-                                                        variant="contained"
-                                                        size="small"
-                                                        sx={{ padding: '4px 16px' }}
-                                                    >
-                                                        Winners
-                                                    </Button> : <Button
-                                                        onClick={() => {
-                                                            handleOpen();
-                                                            setCollabitem(row);
-                                                        }}
-                                                        variant="contained"
-                                                        size="small"
-                                                        sx={{ padding: '4px 16px' }}
-                                                    >
-                                                    View Description
+                                            FormatValue[row.format - 2] && row.status === 1 && FormatValue[row.format - 2].id === 3 ?
+                                                <Button
+                                                    onClick={() => {
+                                                        toggleModal();
+                                                        setCollabitem(row);
+                                                    }}
+                                                    variant="contained"
+                                                    size="small"
+                                                    sx={{ padding: '4px 16px' }}
+                                                >
+                                                    Winners
+                                                </Button> :
+                                                <Button
+                                                    onClick={() => {
+                                                        toggleModal();
+                                                        setCollabitem(row);
+                                                    }}
+                                                    variant="contained"
+                                                    size="small"
+                                                    sx={{ padding: '4px 16px' }}
+                                                >
+                                                    Winners
                                                 </Button>
                                         }
                                     </Stack>
@@ -309,40 +299,30 @@ const Received = () => {
                                     </TableCell>
                                     <TableCell>
                                         <Stack direction="row" gap={1.5}>
+
                                             {
-                                                FormatValue[row.format - 2] ?
-                                                    row.status === 0 && FormatValue[row.format - 2].id === 3 ?
-                                                        <Button
-                                                            onClick={() => {
-                                                                handleOpen();
-                                                                setCollabitem(row);
-                                                            }}
-                                                            variant="contained"
-                                                            size="small"
-                                                            sx={{ padding: '4px 16px' }}
-                                                        >
-                                                            View Description
-                                                        </Button> :
-                                                        <Button
-                                                            onClick={() => {
-                                                                toggleModal();
-                                                                setCollabitem(row);
-                                                            }}
-                                                            variant="contained"
-                                                            size="small"
-                                                            sx={{ padding: '4px 16px' }}
-                                                        >
-                                                            Winners
-                                                        </Button> : <Button
-                                                            onClick={() => {
-                                                                handleOpen();
-                                                                setCollabitem(row);
-                                                            }}
-                                                            variant="contained"
-                                                            size="small"
-                                                            sx={{ padding: '4px 16px' }}
-                                                        >
-                                                        View Description
+                                                FormatValue[row.format - 2] && row.status === 1 && FormatValue[row.format - 2].id === 3 ?
+                                                    <Button
+                                                        onClick={() => {
+                                                            toggleModal();
+                                                            setCollabitem(row);
+                                                        }}
+                                                        variant="contained"
+                                                        size="small"
+                                                        sx={{ padding: '4px 16px' }}
+                                                    >
+                                                        Winners
+                                                    </Button> :
+                                                    <Button
+                                                        onClick={() => {
+                                                            toggleModal();
+                                                            setCollabitem(row);
+                                                        }}
+                                                        variant="contained"
+                                                        size="small"
+                                                        sx={{ padding: '4px 16px' }}
+                                                    >
+                                                        Winners
                                                     </Button>
                                             }
                                         </Stack>
