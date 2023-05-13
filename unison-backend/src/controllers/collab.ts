@@ -621,10 +621,10 @@ export const updateCollab = async (req: Request, res: Response) => {
     collabitem.expiretime * 3600 * 1000 +
     collabitem.expiretimemin * 60 * 1000
   );
-  const inprogressdate =
-    (format == 3 ? enddate.valueOf() : new Date().valueOf()) + 1000 * 60 * 5;
   // const inprogressdate =
-  // (format == 3 ? enddate.valueOf() : new Date().valueOf()) + 3600 * 1000 * 24;
+  //   (format == 3 ? enddate.valueOf() : new Date().valueOf()) + 1000 * 60 * 5;
+  const inprogressdate =
+  (format == 3 ? enddate.valueOf() : new Date().valueOf()) + 3600 * 1000 * 24;
 
   const up: any = await (
     await Collabs.findByIdAndUpdate(_id, {
