@@ -512,7 +512,7 @@ export const getWinners = async ({ collabid, winners }: any) => {
       let winnersindex: any = []
       while (winnersindex.length != winners) {
         let randomindex = getRandomInt(0, totalcount - 1)
-        if (!winnersindex.find((obj: any) => obj == randomindex)) {
+        if (winnersindex.findIndex((obj: any) => obj == randomindex) == -1) {
           winnersindex.push(randomindex)
           let item = await Customer.findOne({ collabId: ObjectId(collabid) }).skip(randomindex)
           if (item) {
