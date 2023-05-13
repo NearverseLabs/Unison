@@ -32,7 +32,7 @@ const ApplyCollabs = () => {
     const [form, setForm] = useState({
         projectId: '',
         collabType: 0,
-        format: 0,
+        format: 1,
         openedSpots: 1,
         description: '',
         requestBy: {
@@ -66,18 +66,6 @@ const ApplyCollabs = () => {
             snackbar({
                 message: 'Error!',
                 content: 'Minimum Raffle Duration: 10 Minutes',
-                color: 'error',
-                variant: 'alert',
-                vertical: 'top',
-                horizontal: 'right',
-                transition: 'SlideLeft'
-            });
-            return;
-        }
-        if (Number(form.format)) {
-            snackbar({
-                message: 'Error!',
-                content: 'please select Format',
                 color: 'error',
                 variant: 'alert',
                 vertical: 'top',
