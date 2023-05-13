@@ -204,7 +204,17 @@ const Received = () => {
                                                         sx={{ padding: '4px 16px' }}
                                                     >
                                                         Winners
-                                                    </Button> : null
+                                                    </Button> : <Button
+                                                        onClick={() => {
+                                                            handleOpen();
+                                                            setCollabitem(row);
+                                                        }}
+                                                        variant="contained"
+                                                        size="small"
+                                                        sx={{ padding: '4px 16px' }}
+                                                    >
+                                                    View Description
+                                                </Button>
                                         }
                                     </Stack>
                                 </Stack>
@@ -330,7 +340,17 @@ const Received = () => {
                                                             sx={{ padding: '4px 16px' }}
                                                         >
                                                             Winners
-                                                        </Button> : null
+                                                        </Button> : <Button
+                                                            onClick={() => {
+                                                                handleOpen();
+                                                                setCollabitem(row);
+                                                            }}
+                                                            variant="contained"
+                                                            size="small"
+                                                            sx={{ padding: '4px 16px' }}
+                                                        >
+                                                        View Description
+                                                    </Button>
                                             }
                                         </Stack>
                                     </TableCell>
