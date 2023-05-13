@@ -32,7 +32,7 @@ const ApplyCollabs = () => {
     const [form, setForm] = useState({
         projectId: '',
         collabType: 0,
-        format: 1,
+        format: 0,
         openedSpots: 1,
         description: '',
         requestBy: {
@@ -74,6 +74,19 @@ const ApplyCollabs = () => {
             });
             return;
         }
+        if (Number(form.format)) {
+            snackbar({
+                message: 'Error!',
+                content: 'please select Format',
+                color: 'error',
+                variant: 'alert',
+                vertical: 'top',
+                horizontal: 'right',
+                transition: 'SlideLeft'
+            });
+            return;
+        }
+        
         await applyCollab(form);
         navigate('../my_collabs');
     };
