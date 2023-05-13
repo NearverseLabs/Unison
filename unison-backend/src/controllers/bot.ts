@@ -160,12 +160,13 @@ export const postAnnouncement = async ({ channelId, description, format, collabi
   try {
     const channel = client.channels.cache.get(channelId) as TextChannel;
     if (channel) {
-      if (format == 3 ) {
+      if (format == 3) {
         const wdata = await setWhitelist({ index: 0, collabid, ended: false, pickerbtn: false, projectid })
         const msg = await channel.send(wdata)
         await UpdateMessageId({ collabid, messageId: msg.id })
       } else if (format == 2) {
-        channel.send("@everyone " + description);
+        const fcfscontent = await setFcfsAnouncement({ collabid, projectid })
+        channel.send(fcfscontent);
       } else {
         return
       }
@@ -451,21 +452,68 @@ export const setWhitelist = async ({ index, collabid, ended, winnersstr, pickerb
     ended = true
   }
   if (ended) {
-    console.log(winnersstr,"--winnersstr---------------")
+    console.log(winnersstr, "--winnersstr---------------")
   }
   const endtime = init.toLocaleDateString() + " " + init.toLocaleTimeString()
   const embed = new EmbedBuilder()
     .setColor(0x0099FF)
     .setTitle('WL Raffle')
-    .setDescription(ended ? "Winners: " + winnersstr + '\n ' + endtime : 'Click 🎉 to enter \n Winners:' + winners +   '\n Ends: `in ' + expiretime + 'hours ' + expiretimemin + 'mins ` \n ' + endtime + 'UTC');
+    .setDescription(ended ? "Winners: " + winnersstr + '\n ' + endtime : 'Click 🎉 to enter \n Winners:' + winners + '\n Ends: `in ' + expiretime + 'hours ' + expiretimemin + 'mins ` \n ' + endtime + 'UTC');
 
   const content = "@everyone \n \n Description: " + collab.description +
     "\n Project Name: " + projectname +
-    "\n Winners: " + collab.openedSpots + '\n Format: FCFS' +  "\n \n"
+    "\n Winners: " + collab.openedSpots + "\n \n"
 
   return {
     content: content, ephemeral: true, embeds: [embed], components: [row]
   };
+}
+
+export const setFcfsAnouncement = async ({ collabid, projectid }: any) => {
+  const clbs: any = await Collabs.aggregate([
+    {
+      $match: { _id: ObjectId(collabid) }
+    },
+    {
+      $lookup: {
+        from: 'guilds',
+        localField: 'requestBy.projectName',
+        foreignField: 'id',
+        as: 'rqserver'
+      }
+    },
+    {
+      $project: {
+        _id: 1,
+        userId: 1,
+        collabType: 1,
+        format: 1,
+        openedSpots: 1,
+        description: 1,
+        requestBy: 1,
+        enddate: 1,
+        status: 1,
+        expiretime: 1,
+        expiretimemin: 1,
+        rqserver: {
+          id: 1,
+          name: 1,
+          icon: 1
+        },
+      }
+    }
+  ])
+
+  console.log(projectid, "--projectid--")
+
+  const projectitem = await Guilds.findOne({ id: projectid })
+  const collab = clbs[0]
+  const projectname = projectitem ? projectitem.name : ""
+  console.log(projectname)
+  const content = "@everyone \n \n Description: " + collab.description +
+    "\n Project Name: " + projectname +
+    "\n Winners: " + collab.openedSpots + 'Format: FCFS' + "\n \n"
+  return content
 }
 
 export const showGotopgaeModal = async (interaction: any, collabid: any) => {
@@ -520,8 +568,8 @@ export const getWinners = async ({ collabid, winners }: any) => {
           }
         }
       }
-      console.log(wins,"--------------------------winnersindex----------------------------------")
-      console.log(winnersindex,"--------------------------winnersindex----------------------------------")
+      console.log(wins, "--------------------------winnersindex----------------------------------")
+      console.log(winnersindex, "--------------------------winnersindex----------------------------------")
       // for (let i in winnersindex) {
       // }
     }
