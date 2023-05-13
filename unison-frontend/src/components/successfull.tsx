@@ -17,13 +17,13 @@ const RequestSuccessfull = ({ handleClick, roleoptions, form, setForm }: any) =>
                 Successfully Imported Bot!
             </Typography>
             <Typography color="text.secondary" sx={{ fontSize: 14, fontWeight: 400 }}>
-                Cursus vel sem eu, ullamcorper lobortis nunc. Aenean nisl libero, dictum et lectus id, ultrices ultricies sem.
+                Please select the WL role for auto-assignment. You may select it later or change it at any time.
             </Typography>
 
             <Stack direction="row" gap={9.5}>
                 <Stack gap={1} width={198}>
                     <Typography className="req-title">Role *</Typography>
-                    <Typography className="req-small-tle">This is role</Typography>
+                    {/* <Typography className="req-small-tle">This is role</Typography> */}
                 </Stack>
                 <Stack justifyContent="center">
                     <Select
