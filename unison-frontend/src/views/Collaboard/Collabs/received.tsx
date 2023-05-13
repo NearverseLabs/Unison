@@ -21,7 +21,7 @@ import {
 } from '@mui/material';
 import DefaultImg from 'assets/images/project.svg';
 import useApi from 'hooks/userApi';
-import { CollabTypeValue, FormatValue, InFLCollabTypeValue, PageSize } from 'components';
+import { CollabTypeValue, DisplayFormatValue, InFLCollabTypeValue, PageSize } from 'components';
 import { useSelector } from 'store';
 import ClearIcon from '@mui/icons-material/Clear';
 /*eslint-disable */
@@ -147,7 +147,7 @@ const Received = () => {
                                 <Stack>
                                     <Typography>Format</Typography>
                                     <Button variant="contained" size="small">
-                                        {FormatValue[row.format - 2] && FormatValue[row.format - 2].name}
+                                        {DisplayFormatValue[row.format - 2] && DisplayFormatValue[row.format - 2].name}
                                     </Button>
                                 </Stack>
                                 <Stack>
@@ -181,7 +181,7 @@ const Received = () => {
                                     <Typography>Actions</Typography>
                                     <Stack direction="row" gap={1.5}>
                                         {
-                                            FormatValue[row.format - 2] && row.status === 1 && FormatValue[row.format - 2].id === 3 ?
+                                            DisplayFormatValue[row.format - 2] && row.status === 1 && DisplayFormatValue[row.format - 2].id === 3 ?
                                                 <Button
                                                     onClick={() => {
                                                         toggleModal();
@@ -280,7 +280,7 @@ const Received = () => {
                                     </TableCell>
                                     <TableCell>
                                         <Button variant="contained" size="small">
-                                            {FormatValue[row.format - 2] && FormatValue[row.format - 2].name}
+                                            {DisplayFormatValue[row.format - 2] && DisplayFormatValue[row.format - 2].name}
                                         </Button>
                                     </TableCell>
                                     <TableCell>{row.openedSpots}</TableCell>
@@ -307,7 +307,7 @@ const Received = () => {
                                         <Stack direction="row" gap={1.5}>
                                             
                                             {
-                                                FormatValue[row.format - 2] && row.status === 1 && FormatValue[row.format - 2].id === 3 ?
+                                                DisplayFormatValue[row.format - 2] && row.status === 1 && DisplayFormatValue[row.format - 2].id === 3 ?
                                                     <Button
                                                         onClick={() => {
                                                             toggleModal();

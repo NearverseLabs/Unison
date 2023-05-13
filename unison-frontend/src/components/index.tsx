@@ -41,6 +41,12 @@ export const FormatValue = [
     { id: 3, name: 'Raffle' }
 ];
 
+
+export const DisplayFormatValue = [
+    { id: 2, name: 'FCFS' },
+    { id: 3, name: 'Raffle' }
+];
+
 export const HourValue = [
     { id: 0, name: '00' },
     { id: 1, name: '01' },
