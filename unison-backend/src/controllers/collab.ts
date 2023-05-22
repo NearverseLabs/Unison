@@ -117,8 +117,9 @@ export const newProject = async (req: Request, res: Response) => {
   let query = req.body;
   query.userId = req.user.userid;
   const existsPro = await Projects.find({ userId: query.userId });
-  if (existsPro.length >= 3)
-    return res.status(400).json('You can add up to 3 projects');
+  // if (existsPro.length >= 3)
+  //   return res.status(400).json('You can add up to 3 projects');
+
   const existsServer = existsPro.filter(
     (pro) => pro.serverId === query.serverId
   );
