@@ -32,11 +32,11 @@ app.use(express.static(path.join(__dirname, '..', 'upload')));
 
 app.use(RetrunValidation);
 app.use(
-  express.static(path.join(__dirname, '../../', 'unison-frontend/build'))
+  express.static(path.join(__dirname, '../../../', 'unison-frontend/build'))
 );
 app.get('*', (req: express.Request, res: express.Response) => {
   res.sendFile(
-    path.join(__dirname, '../../', 'unison-frontend/build/index.html')
+    path.join(__dirname, '../../../', 'unison-frontend/build/index.html')
   );
 });
 server.listen(port);
