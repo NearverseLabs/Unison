@@ -8,7 +8,6 @@ import { connectBOT } from '../src/controllers/bot';
 import connectSocket from '../src/controllers/socket';
 import Routes from './routes';
 import { RetrunValidation } from './middleware/validation';
-const dir = require('../../db');
 
 const port = process.env.PORT;
 
