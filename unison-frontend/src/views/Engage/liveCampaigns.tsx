@@ -225,7 +225,7 @@ const LiveCampaigns = () => {
                                     </Button>
                                 </TableCell>
                                 <TableCell>
-                                    <IconButton size="large" color="success" disabled={!row.engageLink}>
+                                    <IconButton size="large" color="success" onClick={toggleModal} disabled={!row.engageLink}>
                                         <TwitterIcon
                                             sx={{
                                                 fill: palette.text.primary,
