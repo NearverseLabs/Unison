@@ -10,7 +10,7 @@ import Routes from './routes';
 import { RetrunValidation } from './middleware/validation';
 const dir = require('../../db');
 
-const port = 3001;
+const port = process.env.PORT;
 
 const app = express();
 const server = require('http').createServer(app);
