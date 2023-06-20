@@ -29,13 +29,15 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use('/api', Routes);
 
-app.use(express.static(path.join(dir.BASEDIR, '..', 'upload')));
+app.use(express.static(path.join(__dirname, '..', 'upload')));
 
 app.use(RetrunValidation);
-app.use(express.static(path.join(dir.BASEDIR, '../unison-frontend/', 'build')));
+app.use(
+  express.static(path.join(__dirname, '../../', 'unison-frontend/build'))
+);
 app.get('*', (req: express.Request, res: express.Response) => {
   res.sendFile(
-    path.join(dir.BASEDIR, '../unison-frontend/', 'build/index.html')
+    path.join(__dirname, '../../', 'unison-frontend/build/index.html')
   );
 });
 server.listen(port);
