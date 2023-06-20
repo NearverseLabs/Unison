@@ -12,9 +12,7 @@ const customerSchema = new Schema({
   collabId: {
     type: Schema.Types.ObjectId,
     ref: 'collabs'
-  },
+  }
 });
 
-const Winners = model('winner', customerSchema);
-
-export default Winners;
+export default model('winner', customerSchema);

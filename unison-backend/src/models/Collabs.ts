@@ -77,6 +77,4 @@ const collabSchema = new Schema(
   }
 );
 
-const CollabModel = model('collabs', collabSchema);
-
-export default CollabModel;
+export default model('collabs', collabSchema);

@@ -68,7 +68,7 @@ const RequestAccess = () => {
             >
                 <Stack direction={isMobile ? 'column' : 'row'} gap={isMobile ? 0 : 9.5}>
                     <Stack gap={1} width={198}>
-                        <Typography className="req-title">Project *</Typography>
+                        <Typography className="req-title">Project*</Typography>
                         <Typography className="req-small-tle">This will be your profile name.</Typography>
                     </Stack>
                     <Stack justifyContent="center">
@@ -77,7 +77,7 @@ const RequestAccess = () => {
                 </Stack>
                 <Stack direction={isMobile ? 'column' : 'row'} gap={isMobile ? 0 : 9.5}>
                     <Stack gap={1} width={198}>
-                        <Typography className="req-title">Project Description *</Typography>
+                        <Typography className="req-title">Project Description*</Typography>
                         <Typography className="req-small-tle">viverra cursus non elementum.</Typography>
                     </Stack>
                     <Stack justifyContent="center">
@@ -86,7 +86,7 @@ const RequestAccess = () => {
                 </Stack>
                 <Stack direction={isMobile ? 'column' : 'row'} gap={isMobile ? 0 : 9.5}>
                     <Stack gap={1} width={198}>
-                        <Typography className="req-title">Project Status *</Typography>
+                        <Typography className="req-title">Project Status*</Typography>
                         <Typography className="req-small-tle">Etiam in mauris sit amet turpis</Typography>
                     </Stack>
                     <Stack justifyContent="center">
@@ -107,7 +107,7 @@ const RequestAccess = () => {
                 </Stack>
                 <Stack direction={isMobile ? 'column' : 'row'} gap={isMobile ? 0 : 9.5}>
                     <Stack gap={1} width={198}>
-                        <Typography className="req-title">Collab Status *</Typography>
+                        <Typography className="req-title">Collab Status*</Typography>
                         <Typography className="req-small-tle">This will be your profile name.</Typography>
                     </Stack>
                     <Stack justifyContent="center">
@@ -146,7 +146,7 @@ const RequestAccess = () => {
                 </Stack>
                 <Stack direction={isMobile ? 'column' : 'row'} gap={isMobile ? 0 : 9.5}>
                     <Stack gap={1} width={198}>
-                        <Typography className="req-title">Role *</Typography>
+                        <Typography className="req-title">Role*</Typography>
                         <Typography className="req-small-tle">This will be your role.</Typography>
                     </Stack>
                     <Stack justifyContent="center">

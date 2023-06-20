@@ -85,7 +85,9 @@ const ListItem = ({ data }: { data: any }) => {
                     <Typography align={isMobile ? 'left' : 'center'} fontSize={16} fontWeight={700} mt={0.25}>
                         {data.server.name}
                     </Typography>
-                    <Typography align={isMobile ? 'left' : 'center'} sx={{ textOverflow: "ellipsis", overflow: "hidden", height: "60px" }} >{data.description}</Typography>
+                    <Typography align={isMobile ? 'left' : 'center'} sx={{ textOverflow: 'ellipsis', overflow: 'hidden', height: '60px' }}>
+                        {data.description}
+                    </Typography>
                     {data.userType === 2 && (
                         <Stack
                             sx={{

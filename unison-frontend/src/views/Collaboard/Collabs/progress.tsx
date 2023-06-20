@@ -107,9 +107,7 @@ const Progress = () => {
                                         {/* {row.project.userType === 1
                                             ? CollabTypeValue[row.collabType - 1].name
                                             : InFLCollabTypeValue[row.collabType - 1].name} */}
-                                        {
-                                            CollabTypeValue[row.collabType - 1].name
-                                        }
+                                        {CollabTypeValue[row.collabType - 1].name}
                                     </Button>
                                 </Stack>
                                 <Stack>
@@ -136,18 +134,18 @@ const Progress = () => {
                                 <Stack>
                                     <Typography>Actions</Typography>
                                     <Stack direction="row" gap={1.5}>
-                                            <Button
-                                                onClick={() => {
-                                                    handleOpen();
-                                                    setCollabitem(row);
-                                                }}
-                                                variant="contained"
-                                                size="small"
-                                                sx={{ padding: '4px 16px' }}
-                                            >
-                                                View Description
-                                            </Button>
-                                        </Stack>
+                                        <Button
+                                            onClick={() => {
+                                                handleOpen();
+                                                setCollabitem(row);
+                                            }}
+                                            variant="contained"
+                                            size="small"
+                                            sx={{ padding: '4px 16px' }}
+                                        >
+                                            View Description
+                                        </Button>
+                                    </Stack>
                                 </Stack>
                             </Stack>
                         </Card>
@@ -217,9 +215,7 @@ const Progress = () => {
                                             {/* {row.project.userType === 1
                                                 ? CollabTypeValue[row.collabType - 1].name
                                                 : InFLCollabTypeValue[row.collabType - 1].name} */}
-                                            {
-                                                CollabTypeValue[row.collabType - 1].name
-                                            }
+                                            {CollabTypeValue[row.collabType - 1].name}
                                         </Button>
                                     </TableCell>
                                     <TableCell>

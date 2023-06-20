@@ -2,9 +2,25 @@ import { Button, Divider, Stack, Typography, Select, MenuItem, TextField, useMed
 
 import { useNavigate } from 'react-router-dom';
 
+const requirements = [
+    { value: 'Follow', label: 'Follow' },
+    { value: 'Like', label: 'Like' },
+    { value: 'Retweet', label: 'Retweet' },
+    { value: 'Quote Retweet', label: 'Quote Retweet' },
+    { value: 'Minimum Follower Count', label: 'Minimum Follower Count' }
+];
+
+const tokens = [
+    { value: 'NEAR', label: 'NEAR' },
+    { value: 'NVRS', label: 'NVRS' },
+    { value: 'NEKO', label: 'NEKO' }
+];
+
 const NewCampaign = () => {
     const navigate = useNavigate();
     const isMobile = useMediaQuery('(max-width:768px)');
+    const gap = isMobile ? 0 : 9.5;
+    const direction = isMobile ? 'column' : 'row';
     return (
         <Stack gap={4}>
             <Stack
@@ -48,74 +64,81 @@ const NewCampaign = () => {
                         color: 'text.secondary'
                     },
                     '& .req-input': {
-                        width: isMobile ? 'auto' : 454
+                        width: isMobile ? '100%' : 454
                     }
                 }}
             >
-                <Stack direction={isMobile ? 'column' : 'row'} gap={isMobile ? 0 : 9.5}>
-                    <Stack gap={1} width={198}>
+                <Stack direction={direction} gap={gap}>
+                    <Stack gap={1} width={250}>
                         <Typography className="req-title">Project /Username*</Typography>
-                        <Typography className="req-small-tle">Your Future Collab Partner</Typography>
+                        <Typography className="req-small-tle">Your Twitter Username</Typography>
                     </Stack>
                     <Stack justifyContent="center">
                         <TextField hiddenLabel defaultValue="Near Tribes" className="req-input" size="small" />
                     </Stack>
                 </Stack>
-                <Stack direction={isMobile ? 'column' : 'row'} gap={isMobile ? 0 : 9.5}>
-                    <Stack gap={1} width={198}>
-                        <Typography className="req-title">ClaimType *</Typography>
-                        <Typography className="req-small-tle">viverra cursus non elementum .</Typography>
+                <Stack direction={direction} gap={gap}>
+                    <Stack gap={1} width={250}>
+                        <Typography className="req-title">Requirements*</Typography>
+                        <Typography className="req-small-tle">Activities for Participants</Typography>
                     </Stack>
                     <Stack justifyContent="center">
                         <Select id="demo-simple-select" value={1} sx={{ height: 40 }} className="req-input">
-                            <MenuItem value={1}>Raffle</MenuItem>
-                            <MenuItem value={2}>Twenty</MenuItem>
+                            {requirements.map((item, key) => (
+                                <MenuItem key={key} value={item.value}>
+                                    {item.label}
+                                </MenuItem>
+                            ))}
                         </Select>
                     </Stack>
                 </Stack>
-                <Stack direction={isMobile ? 'column' : 'row'} gap={isMobile ? 0 : 9.5}>
-                    <Stack gap={1} width={198}>
-                        <Typography className="req-title">Requirements *</Typography>
-                        <Typography className="req-small-tle">Etiam in mauris sit amet turpis</Typography>
-                    </Stack>
-                    <Stack justifyContent="center">
-                        <Select id="demo-simple-select" value={1} sx={{ height: 40 }} className="req-input">
-                            <MenuItem value={1}>Like & Retweet</MenuItem>
-                            <MenuItem value={2}>Twenty</MenuItem>
-                        </Select>
-                    </Stack>
-                </Stack>
-                <Stack direction={isMobile ? 'column' : 'row'} gap={isMobile ? 0 : 9.5}>
-                    <Stack gap={1} width={198}>
+                <Stack direction={direction} gap={gap}>
+                    <Stack gap={1} width={250}>
                         <Typography className="req-title">Reward*</Typography>
-                        <Typography className="req-small-tle">Choose no of open spots</Typography>
+                        <Typography className="req-small-tle">Amount and Token Type</Typography>
+                    </Stack>
+                    <Stack justifyContent="center" direction="row" width={455} gap={2}>
+                        <TextField sx={{ maxWidth: '50%' }} label="Amount" defaultValue="" className="req-input" size="small" />
+                        <Select id="demo-simple-select" value={1} sx={{ height: 40 }} className="req-input">
+                            {tokens.map((item, key) => (
+                                <MenuItem key={key} value={item.value}>
+                                    {item.label}
+                                </MenuItem>
+                            ))}
+                        </Select>
+                    </Stack>
+                </Stack>
+                <Stack direction={direction} gap={gap}>
+                    <Stack gap={1} width={250}>
+                        <Typography className="req-title">Winners</Typography>
+                        <Typography className="req-small-tle">No of Winners</Typography>
                     </Stack>
                     <Stack justifyContent="center">
                         <TextField hiddenLabel defaultValue="" className="req-input" size="small" />
                     </Stack>
                 </Stack>
-                <Stack direction={isMobile ? 'column' : 'row'} gap={isMobile ? 0 : 9.5}>
-                    <Stack gap={1} width={198}>
+                <Stack direction={direction} gap={gap}>
+                    <Stack gap={1} width={250}>
                         <Typography className="req-title">Total Rewards*</Typography>
-                        <Typography className="req-small-tle">Choose no of open spots</Typography>
+                        <Typography className="req-small-tle">Total = Reward x No of Winners</Typography>
                     </Stack>
                     <Stack justifyContent="center">
                         <TextField hiddenLabel defaultValue="" className="req-input" size="small" />
                     </Stack>
                 </Stack>
-                <Stack direction={isMobile ? 'column' : 'row'} gap={isMobile ? 0 : 9.5}>
-                    <Stack gap={1} width={198}>
-                        <Typography className="req-title">Time*</Typography>
-                        <Typography className="req-small-tle">Choose no of open spots</Typography>
+                <Stack direction={direction} gap={gap}>
+                    <Stack gap={1} width={250}>
+                        <Typography className="req-title">Duration*</Typography>
+                        <Typography className="req-small-tle">Duration of the Campaign</Typography>
                     </Stack>
                     <Stack justifyContent="center">
                         <TextField hiddenLabel defaultValue="" className="req-input" size="small" />
                     </Stack>
                 </Stack>
-                <Stack direction={isMobile ? 'column' : 'row'} gap={isMobile ? 0 : 9.5}>
-                    <Stack gap={1} width={198}>
-                        <Typography className="req-title">Tweet Link*</Typography>
-                        <Typography className="req-small-tle">Choose no of open spots</Typography>
+                <Stack direction={direction} gap={gap}>
+                    <Stack gap={1} width={250}>
+                        <Typography className="req-title">Tweet Link/Tweet ID*</Typography>
+                        <Typography className="req-small-tle">Paste the whole link or just the ID</Typography>
                     </Stack>
                     <Stack justifyContent="center">
                         <TextField hiddenLabel defaultValue="" className="req-input" size="small" />

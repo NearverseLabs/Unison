@@ -3,8 +3,8 @@ import User from '../models/Users';
 import { Request, Payload } from '../types';
 import jwt from 'jsonwebtoken';
 
-const JWTSECRET = "unison"
-const JWTEXPIRATION = 3600000 * 2
+const JWTSECRET = 'unison';
+const JWTEXPIRATION = 3600000 * 2;
 
 export const loginDiscord = async (req: Request, res: Response) => {
   let userData = req.body;

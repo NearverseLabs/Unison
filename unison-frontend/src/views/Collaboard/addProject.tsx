@@ -85,7 +85,7 @@ const AddComponent = (props: any) => {
             >
                 <Stack direction={isMobile ? 'column' : 'row'} gap={isMobile ? 0 : 9.5}>
                     <Stack gap={1} width={198}>
-                        <Typography className="req-title">Project *</Typography>
+                        <Typography className="req-title">Project*</Typography>
                         <Typography className="req-small-tle">This will be your profile name.</Typography>
                     </Stack>
                     <Stack justifyContent="center">
@@ -94,12 +94,7 @@ const AddComponent = (props: any) => {
                             value={form.serverId}
                             sx={{ height: 40 }}
                             className="req-input"
-                            onChange={(e) => {
-                                setForm({
-                                    ...form,
-                                    serverId: e.target.value
-                                });
-                            }}
+                            onChange={(e) => setForm({ ...form, serverId: e.target.value })}
                         >
                             {servers.map((row: any) => (
                                 <MenuItem key={row.id} value={row.id}>
@@ -111,7 +106,7 @@ const AddComponent = (props: any) => {
                 </Stack>
                 <Stack direction={isMobile ? 'column' : 'row'} gap={isMobile ? 0 : 9.5}>
                     <Stack gap={1} width={198}>
-                        <Typography className="req-title">Project Description *</Typography>
+                        <Typography className="req-title">Project Description*</Typography>
                         <Typography className="req-small-tle">Write briefly about your project</Typography>
                     </Stack>
                     <Stack justifyContent="center">
@@ -123,15 +118,13 @@ const AddComponent = (props: any) => {
                             variant="outlined"
                             className="req-input"
                             inputProps={{ maxLength: 160 }}
-                            onChange={(e) => {
-                                setForm({ ...form, description: e.target.value });
-                            }}
+                            onChange={(e) => setForm({ ...form, description: e.target.value })}
                         />
                     </Stack>
                 </Stack>
                 <Stack direction={isMobile ? 'column' : 'row'} gap={isMobile ? 0 : 9.5}>
                     <Stack gap={1} width={198}>
-                        <Typography className="req-title">Project Status *</Typography>
+                        <Typography className="req-title">Project Status*</Typography>
                         <Typography className="req-small-tle">Mint Status or Project type</Typography>
                     </Stack>
                     <Stack justifyContent="center">
@@ -140,9 +133,7 @@ const AddComponent = (props: any) => {
                             value={form.projectStatus}
                             sx={{ height: 40 }}
                             className="req-input"
-                            onChange={(e) => {
-                                setForm({ ...form, projectStatus: Number(e.target.value) });
-                            }}
+                            onChange={(e) => setForm({ ...form, projectStatus: Number(e.target.value) })}
                         >
                             {ProjectStatusValue.map((row: any) => (
                                 <MenuItem key={row.id} value={row.id}>
@@ -154,7 +145,7 @@ const AddComponent = (props: any) => {
                 </Stack>
                 <Stack direction={isMobile ? 'column' : 'row'} gap={isMobile ? 0 : 9.5}>
                     <Stack gap={1} width={198}>
-                        <Typography className="req-title">Collab Status *</Typography>
+                        <Typography className="req-title">Collab Status*</Typography>
                         <Typography className="req-small-tle">Open/Close collab</Typography>
                     </Stack>
                     <Stack justifyContent="center">
@@ -163,9 +154,7 @@ const AddComponent = (props: any) => {
                             value={form.collabStatus}
                             sx={{ height: 40 }}
                             className="req-input"
-                            onChange={(e) => {
-                                setForm({ ...form, collabStatus: Number(e.target.value) });
-                            }}
+                            onChange={(e) => setForm({ ...form, collabStatus: Number(e.target.value) })}
                         >
                             {CollabStatusValue.map((row: any) => (
                                 <MenuItem key={row.id} value={row.id}>
@@ -177,7 +166,7 @@ const AddComponent = (props: any) => {
                 </Stack>
                 <Stack direction={isMobile ? 'column' : 'row'} gap={isMobile ? 0 : 9.5}>
                     <Stack gap={1} width={198}>
-                        <Typography className="req-title">User Type *</Typography>
+                        <Typography className="req-title">User Type*</Typography>
                         <Typography className="req-small-tle">Project Admin/Influencer User</Typography>
                     </Stack>
                     <Stack justifyContent="center">
@@ -186,9 +175,7 @@ const AddComponent = (props: any) => {
                             value={form.userType}
                             sx={{ height: 40 }}
                             className="req-input"
-                            onChange={(e) => {
-                                setForm({ ...form, userType: Number(e.target.value) });
-                            }}
+                            onChange={(e) => setForm({ ...form, userType: Number(e.target.value) })}
                         >
                             {UserTypeValue.map((row: any) => (
                                 <MenuItem key={row.id} value={row.id}>
@@ -203,13 +190,15 @@ const AddComponent = (props: any) => {
                         <Typography className="req-title">Twitter Link</Typography>
                         <Typography className="req-small-tle">Your project’s twitter profile</Typography>
                     </Stack>
-                    <Stack className="req-input" flexDirection={"row"} justifyContent="center" alignItems={"center"}>
-                        <Stack sx={{
-                            justifyContent: "center",
-                            display: "flex",
-                            alignItems: "center",
-                            padding: "0.5rem"
-                        }}>
+                    <Stack className="req-input" flexDirection={'row'} justifyContent="center" alignItems={'center'}>
+                        <Stack
+                            sx={{
+                                justifyContent: 'center',
+                                display: 'flex',
+                                alignItems: 'center',
+                                padding: '0.5rem'
+                            }}
+                        >
                             <Typography className="req-title">https://twitter.com/</Typography>
                         </Stack>
                         <TextField
@@ -217,11 +206,9 @@ const AddComponent = (props: any) => {
                             value={form.twitterLink}
                             size="small"
                             sx={{
-                                width:"100%"
+                                width: '100%'
                             }}
-                            onChange={(e) => {
-                                setForm({ ...form, twitterLink: e.target.value });
-                            }}
+                            onChange={(e) => setForm({ ...form, twitterLink: e.target.value })}
                         />
                     </Stack>
                 </Stack>
@@ -230,25 +217,23 @@ const AddComponent = (props: any) => {
                         <Typography className="req-title">Discord Link</Typography>
                         <Typography className="req-small-tle">Your project’s discord invite</Typography>
                     </Stack>
-                    <Stack className="req-input" flexDirection={"row"} justifyContent="center" alignItems={"center"} >
-                        <Stack sx={{
-                            justifyContent: "center",
-                            display: "flex",
-                            alignItems: "center",
-                            padding: "0.5rem"
-                        }}>
+                    <Stack className="req-input" flexDirection={'row'} justifyContent="center" alignItems={'center'}>
+                        <Stack
+                            sx={{
+                                justifyContent: 'center',
+                                display: 'flex',
+                                alignItems: 'center',
+                                padding: '0.5rem'
+                            }}
+                        >
                             <Typography className="req-title">https://discord.gg/</Typography>
                         </Stack>
                         <TextField
                             hiddenLabel
                             value={form.discordLink}
-                            sx={{
-                                width:"100%"
-                            }}
+                            sx={{ width: '100%' }}
                             size="small"
-                            onChange={(e) => {
-                                setForm({ ...form, discordLink: e.target.value });
-                            }}
+                            onChange={(e) => setForm({ ...form, discordLink: e.target.value })}
                         />
                     </Stack>
                 </Stack>

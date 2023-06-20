@@ -27,6 +27,4 @@ const userSchema: Schema = new Schema({
   }
 });
 
-const User = model('notification', userSchema);
-
-export default User;
+export default model('notification', userSchema);

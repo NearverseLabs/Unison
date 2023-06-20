@@ -46,6 +46,4 @@ const projectSchema = new Schema({
   }
 });
 
-const ProjectModel = model('pendingprojects', projectSchema);
-
-export default ProjectModel;
+export default model('pendingprojects', projectSchema);

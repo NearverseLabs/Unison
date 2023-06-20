@@ -1,4 +1,3 @@
-
 module.exports = {
-    "BASEDIR":__dirname
-}
+  BASEDIR: __dirname
+};
