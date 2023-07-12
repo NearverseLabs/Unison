@@ -8,9 +8,8 @@ import { connectBOT } from '../src/controllers/bot';
 import connectSocket from '../src/controllers/socket';
 import Routes from './routes';
 import { RetrunValidation } from './middleware/validation';
-const dir = require('../../db');
 
-const port = 3001;
+const port = process.env.PORT;
 
 const app = express();
 const server = require('http').createServer(app);
@@ -29,15 +28,15 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use('/api', Routes);
 
-app.use(express.static(path.join(dir.BASEDIR, '..', 'upload')));
+app.use(express.static(path.join(__dirname, '..', 'upload')));
 
 app.use(RetrunValidation);
 app.use(
-  express.static(path.join(dir.BASEDIR, '../unison-frontend/', 'build'))
+  express.static(path.join(__dirname, '../../../', 'unison-frontend/build'))
 );
 app.get('*', (req: express.Request, res: express.Response) => {
   res.sendFile(
-    path.join(dir.BASEDIR, '../unison-frontend/', 'build/index.html')
+    path.join(__dirname, '../../../', 'unison-frontend/build/index.html')
   );
 });
 server.listen(port);

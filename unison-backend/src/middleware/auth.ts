@@ -3,7 +3,7 @@ import HttpStatusCodes from 'http-status-codes';
 import jwt from 'jsonwebtoken';
 import { Payload, Request } from '../types';
 import User from '../models/Users';
-const JWTSECRET = "unison"
+const JWTSECRET = 'unison';
 
 export default async function (
   req: Request,

@@ -5,7 +5,7 @@ import AuthGuard from 'utils/authguard';
 
 const LoginPage = lazy(() => import('../views/Pages/Login'));
 const DiscordLogin = lazy(() => import('../views/Pages/Discord'));
-const CollaboardPage = lazy(() => import('../views/Collaboard/index'));
+const CollaboardPage = lazy(() => import('../views/Collaboard'));
 const RequestAccess = lazy(() => import('../views/Collaboard/request'));
 const RequestBot = lazy(() => import('../views/Collaboard/bot'));
 const RequestSuccessfull = lazy(() => import('../views/Collaboard/successfull'));
@@ -14,7 +14,7 @@ const MyProject = lazy(() => import('../views/Collaboard/myProject'));
 const MyCollabs = lazy(() => import('../views/Collaboard/myCollabs'));
 const ApplyCollabs = lazy(() => import('../views/Collaboard/applyCollabs'));
 const EditCollabs = lazy(() => import('../views/Collaboard/EditCollabs'));
-const EngagePage = lazy(() => import('../views/Engage/index'));
+const EngagePage = lazy(() => import('../views/Engage'));
 const NewCampaign = lazy(() => import('../views/Engage/newCampaign'));
 const ProfilePage = lazy(() => import('../views/Profile'));
 const ErrorPage = lazy(() => import('../views/Error'));

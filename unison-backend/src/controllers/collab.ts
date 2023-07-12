@@ -20,7 +20,6 @@ export const winnersAll = async (req: Request, res: Response) => {
   res.json(results);
 };
 
-
 export const ObjectId = (id: string) => {
   try {
     return new mongoose.Types.ObjectId(id);
@@ -382,7 +381,7 @@ export const getMyCollabs = async (req: Request, res: Response) => {
           id: 1,
           username: 1,
           discriminator: 1
-        },
+        }
       }
     },
     {
@@ -497,7 +496,7 @@ export const getSentMyCollabs = async (req: Request, res: Response) => {
           id: 1,
           username: 1,
           discriminator: 1
-        },
+        }
       }
     },
     {
@@ -619,13 +618,13 @@ export const updateCollab = async (req: Request, res: Response) => {
   const collabitem = await Collabs.findById(_id);
   const enddate = new Date(
     new Date().valueOf() +
-    collabitem.expiretime * 3600 * 1000 +
-    collabitem.expiretimemin * 60 * 1000
+      collabitem.expiretime * 3600 * 1000 +
+      collabitem.expiretimemin * 60 * 1000
   );
   // const inprogressdate =
   //   (format == 3 ? enddate.valueOf() : new Date().valueOf()) + 1000 * 60 * 5;
   const inprogressdate =
-  (format == 3 ? enddate.valueOf() : new Date().valueOf()) + 3600 * 1000 * 24;
+    (format == 3 ? enddate.valueOf() : new Date().valueOf()) + 3600 * 1000 * 24;
 
   const up: any = await (
     await Collabs.findByIdAndUpdate(_id, {

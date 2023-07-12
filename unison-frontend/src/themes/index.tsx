@@ -40,9 +40,6 @@ const theme = createTheme({
         },
         MuiTypography: {
             styleOverrides: {
-                root: {
-                    fontSize: 14
-                },
                 subtitle1: {
                     color: 'rgba(254, 254, 254, 0.8)',
                     fontSize: '14px'

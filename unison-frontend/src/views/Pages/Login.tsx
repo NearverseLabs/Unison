@@ -97,12 +97,7 @@ const LoginPage = () => {
                             Discover and request collaborations with your favorite Projects and Influencers
                         </Typography>
                     </Stack>
-                    <Stack 
-                        color={palette.common.white}
-                        flexDirection="row"
-                        alignItems={'center'}
-                        justifyContent='center'
-                    >
+                    <Stack color={palette.common.white} flexDirection="row" alignItems={'center'} justifyContent="center">
                         <Box
                             component="img"
                             src={Logo}

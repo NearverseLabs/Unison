@@ -22,7 +22,7 @@ const RequestSuccessfull = ({ handleClick, roleoptions, form, setForm }: any) =>
 
             <Stack direction="row" gap={9.5}>
                 <Stack gap={1} width={198}>
-                    <Typography className="req-title">Role *</Typography>
+                    <Typography className="req-title">Role*</Typography>
                     {/* <Typography className="req-small-tle">This is role</Typography> */}
                 </Stack>
                 <Stack justifyContent="center">
@@ -31,9 +31,7 @@ const RequestSuccessfull = ({ handleClick, roleoptions, form, setForm }: any) =>
                         value={form.roleId}
                         sx={{ height: 40 }}
                         className="req-input"
-                        onChange={(e) => {
-                            setForm({ ...form, roleId: e.target.value });
-                        }}
+                        onChange={(e) => setForm({ ...form, roleId: e.target.value })}
                     >
                         {roleoptions.map((row: any) => (
                             <MenuItem key={row.value} value={row.value}>

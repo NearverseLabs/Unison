@@ -15,6 +15,4 @@ const customerSchema = new Schema({
   }
 });
 
-const CollabPagenation = model('collabpagenation', customerSchema);
-
-export default CollabPagenation;
+export default model('collabpagenation', customerSchema);

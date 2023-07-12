@@ -59,7 +59,7 @@ const AddComponent = (props: any) => {
             >
                 <Stack direction={isMobile ? 'column' : 'row'} gap={isMobile ? 0 : 9.5}>
                     <Stack gap={1} width={198}>
-                        <Typography className="req-title">Project *</Typography>
+                        <Typography className="req-title">Project*</Typography>
                         <Typography className="req-small-tle">This will be your profile name.</Typography>
                     </Stack>
                     <Stack justifyContent="center">
@@ -69,12 +69,12 @@ const AddComponent = (props: any) => {
                             sx={{ height: 40 }}
                             className="req-input"
                             disabled
-                            onChange={(e) => {
+                            onChange={(e) =>
                                 setForm({
                                     ...form,
                                     serverId: e.target.value
-                                });
-                            }}
+                                })
+                            }
                         >
                             <MenuItem value={form.serverId}>{servername}</MenuItem>
                         </Select>
@@ -82,7 +82,7 @@ const AddComponent = (props: any) => {
                 </Stack>
                 <Stack direction={isMobile ? 'column' : 'row'} gap={isMobile ? 0 : 9.5}>
                     <Stack gap={1} width={198}>
-                        <Typography className="req-title">Project Description *</Typography>
+                        <Typography className="req-title">Project Description*</Typography>
                         <Typography className="req-small-tle">viverra cursus non elementum.</Typography>
                     </Stack>
                     <Stack justifyContent="center">
@@ -94,15 +94,13 @@ const AddComponent = (props: any) => {
                             variant="outlined"
                             className="req-input"
                             inputProps={{ maxLength: 160 }}
-                            onChange={(e) => {
-                                setForm({ ...form, description: e.target.value });
-                            }}
+                            onChange={(e) => setForm({ ...form, description: e.target.value })}
                         />
                     </Stack>
                 </Stack>
                 <Stack direction={isMobile ? 'column' : 'row'} gap={isMobile ? 0 : 9.5}>
                     <Stack gap={1} width={198}>
-                        <Typography className="req-title">Project Status *</Typography>
+                        <Typography className="req-title">Project Status*</Typography>
                         <Typography className="req-small-tle">Etiam in mauris sit amet turpis</Typography>
                     </Stack>
                     <Stack justifyContent="center">
@@ -111,9 +109,7 @@ const AddComponent = (props: any) => {
                             value={form.projectStatus}
                             sx={{ height: 40 }}
                             className="req-input"
-                            onChange={(e) => {
-                                setForm({ ...form, projectStatus: Number(e.target.value) });
-                            }}
+                            onChange={(e) => setForm({ ...form, projectStatus: Number(e.target.value) })}
                         >
                             {ProjectStatusValue.map((row: any) => (
                                 <MenuItem key={row.id} value={row.id}>
@@ -125,7 +121,7 @@ const AddComponent = (props: any) => {
                 </Stack>
                 <Stack direction={isMobile ? 'column' : 'row'} gap={isMobile ? 0 : 9.5}>
                     <Stack gap={1} width={198}>
-                        <Typography className="req-title">Collab Status *</Typography>
+                        <Typography className="req-title">Collab Status*</Typography>
                         <Typography className="req-small-tle">This will be your profile name.</Typography>
                     </Stack>
                     <Stack justifyContent="center">
@@ -134,9 +130,7 @@ const AddComponent = (props: any) => {
                             value={form.collabStatus}
                             sx={{ height: 40 }}
                             className="req-input"
-                            onChange={(e) => {
-                                setForm({ ...form, collabStatus: Number(e.target.value) });
-                            }}
+                            onChange={(e) => setForm({ ...form, collabStatus: Number(e.target.value) })}
                         >
                             {CollabStatusValue.map((row: any) => (
                                 <MenuItem key={row.id} value={row.id}>
@@ -148,7 +142,7 @@ const AddComponent = (props: any) => {
                 </Stack>
                 <Stack direction={isMobile ? 'column' : 'row'} gap={isMobile ? 0 : 9.5}>
                     <Stack gap={1} width={198}>
-                        <Typography className="req-title">User Type *</Typography>
+                        <Typography className="req-title">User Type*</Typography>
                         <Typography className="req-small-tle">This will be your User Type.</Typography>
                     </Stack>
                     <Stack justifyContent="center">
@@ -157,9 +151,7 @@ const AddComponent = (props: any) => {
                             value={form.userType}
                             sx={{ height: 40 }}
                             className="req-input"
-                            onChange={(e) => {
-                                setForm({ ...form, userType: Number(e.target.value) });
-                            }}
+                            onChange={(e) => setForm({ ...form, userType: Number(e.target.value) })}
                         >
                             {UserTypeValue.map((row: any) => (
                                 <MenuItem key={row.id} value={row.id}>
@@ -180,9 +172,7 @@ const AddComponent = (props: any) => {
                             value={form.twitterLink}
                             className="req-input"
                             size="small"
-                            onChange={(e) => {
-                                setForm({ ...form, twitterLink: e.target.value });
-                            }}
+                            onChange={(e) => setForm({ ...form, twitterLink: e.target.value })}
                         />
                     </Stack>
                 </Stack>
@@ -197,16 +187,14 @@ const AddComponent = (props: any) => {
                             value={form.discordLink}
                             className="req-input"
                             size="small"
-                            onChange={(e) => {
-                                setForm({ ...form, discordLink: e.target.value });
-                            }}
+                            onChange={(e) => setForm({ ...form, discordLink: e.target.value })}
                         />
                     </Stack>
                 </Stack>
 
                 <Stack direction={isMobile ? 'column' : 'row'} gap={isMobile ? 0 : 9.5}>
                     <Stack gap={1} width={198}>
-                        <Typography className="req-title">Role *</Typography>
+                        <Typography className="req-title">Role*</Typography>
                         <Typography className="req-small-tle">This is role</Typography>
                     </Stack>
                     <Stack justifyContent="center">
@@ -215,9 +203,7 @@ const AddComponent = (props: any) => {
                             value={form.roleId}
                             sx={{ height: 40 }}
                             className="req-input"
-                            onChange={(e) => {
-                                setForm({ ...form, roleId: e.target.value });
-                            }}
+                            onChange={(e) => setForm({ ...form, roleId: e.target.value })}
                         >
                             {roleoptions.map((row: any) => (
                                 <MenuItem key={row.value} value={row.value}>

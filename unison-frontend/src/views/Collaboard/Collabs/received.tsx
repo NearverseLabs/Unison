@@ -62,10 +62,8 @@ const Received = () => {
     });
 
     const toggleModal = () => {
-        setWinnerModal(prev => {
-            return !prev
-        })
-    }
+        setWinnerModal((prev) => !prev);
+    };
 
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
@@ -139,9 +137,7 @@ const Received = () => {
                                         {/* {row.project.userType === 1
                                             ? CollabTypeValue[row.collabType - 1].name
                                             : InFLCollabTypeValue[row.collabType - 1].name} */}
-                                        {
-                                            CollabTypeValue[row.collabType - 1].name
-                                        }
+                                        {CollabTypeValue[row.collabType - 1].name}
                                     </Button>
                                 </Stack>
                                 <Stack>
@@ -180,31 +176,33 @@ const Received = () => {
                                 <Stack>
                                     <Typography>Actions</Typography>
                                     <Stack direction="row" gap={1.5}>
-                                        {
-                                            DisplayFormatValue[row.format - 2] && row.status === 1 && DisplayFormatValue[row.format - 2].id === 3 ?
-                                                <Button
-                                                    onClick={() => {
-                                                        toggleModal();
-                                                        setCollabitem(row);
-                                                    }}
-                                                    variant="contained"
-                                                    size="small"
-                                                    sx={{ padding: '4px 16px' }}
-                                                >
-                                                    Winners
-                                                </Button> :
-                                                 <Button
-                                                 onClick={() => {
-                                                     handleOpen();
-                                                     setCollabitem(row);
-                                                 }}
-                                                 variant="contained"
-                                                 size="small"
-                                                 sx={{ padding: '4px 16px' }}
-                                             >
-                                                 View Description
-                                             </Button>
-                                        }
+                                        {DisplayFormatValue[row.format - 2] &&
+                                        row.status === 1 &&
+                                        DisplayFormatValue[row.format - 2].id === 3 ? (
+                                            <Button
+                                                onClick={() => {
+                                                    toggleModal();
+                                                    setCollabitem(row);
+                                                }}
+                                                variant="contained"
+                                                size="small"
+                                                sx={{ padding: '4px 16px' }}
+                                            >
+                                                Winners
+                                            </Button>
+                                        ) : (
+                                            <Button
+                                                onClick={() => {
+                                                    handleOpen();
+                                                    setCollabitem(row);
+                                                }}
+                                                variant="contained"
+                                                size="small"
+                                                sx={{ padding: '4px 16px' }}
+                                            >
+                                                View Description
+                                            </Button>
+                                        )}
                                     </Stack>
                                 </Stack>
                             </Stack>
@@ -273,9 +271,7 @@ const Received = () => {
                                     </TableCell>
                                     <TableCell>
                                         <Button variant="contained" size="small">
-                                            {
-                                                CollabTypeValue[row.collabType - 1].name
-                                            }
+                                            {CollabTypeValue[row.collabType - 1].name}
                                         </Button>
                                     </TableCell>
                                     <TableCell>
@@ -305,32 +301,33 @@ const Received = () => {
                                     </TableCell>
                                     <TableCell>
                                         <Stack direction="row" gap={1.5}>
-                                            
-                                            {
-                                                DisplayFormatValue[row.format - 2] && row.status === 1 && DisplayFormatValue[row.format - 2].id === 3 ?
-                                                    <Button
-                                                        onClick={() => {
-                                                            toggleModal();
-                                                            setCollabitem(row);
-                                                        }}
-                                                        variant="contained"
-                                                        size="small"
-                                                        sx={{ padding: '4px 16px' }}
-                                                    >
-                                                        Winners
-                                                    </Button> :
-                                                     <Button
-                                                     onClick={() => {
-                                                         handleOpen();
-                                                         setCollabitem(row);
-                                                     }}
-                                                     variant="contained"
-                                                     size="small"
-                                                     sx={{ padding: '4px 16px' }}
-                                                 >
-                                                     View Description
-                                                 </Button>
-                                            }
+                                            {DisplayFormatValue[row.format - 2] &&
+                                            row.status === 1 &&
+                                            DisplayFormatValue[row.format - 2].id === 3 ? (
+                                                <Button
+                                                    onClick={() => {
+                                                        toggleModal();
+                                                        setCollabitem(row);
+                                                    }}
+                                                    variant="contained"
+                                                    size="small"
+                                                    sx={{ padding: '4px 16px' }}
+                                                >
+                                                    Winners
+                                                </Button>
+                                            ) : (
+                                                <Button
+                                                    onClick={() => {
+                                                        handleOpen();
+                                                        setCollabitem(row);
+                                                    }}
+                                                    variant="contained"
+                                                    size="small"
+                                                    sx={{ padding: '4px 16px' }}
+                                                >
+                                                    View Description
+                                                </Button>
+                                            )}
                                         </Stack>
                                     </TableCell>
                                 </TableRow>
@@ -457,9 +454,7 @@ const Received = () => {
                         position: 'absolute',
                         top: '0',
                         right: '0',
-                        // left: '',
                         minWidth: isMobile ? '85%' : 400,
-                        // transform: 'translate(-50%, -50%)',
                         bgcolor: 'background.paper',
                         border: '1px solid #000',
                         paddding: '2rem',
@@ -482,17 +477,16 @@ const Received = () => {
                             <ClearIcon />
                         </Typography>
                     </Stack>
-                    <Stack sx={{ padding: '1rem', display: "block" }}>
-                        {
-                            collabitem && collabitem.winneruser ?
-                                collabitem.winneruser.map((item: any, i) => (
-                                    <Stack sx={{ padding: '0.5rem 0' }} key={i} >
-                                        <Typography sx={{ cursor: 'pointer' }} >
-                                            {item.username}#{item.discriminator}
-                                        </Typography>
-                                    </Stack>
-                                )) : null
-                        }
+                    <Stack sx={{ padding: '1rem', display: 'block' }}>
+                        {collabitem && collabitem.winneruser
+                            ? collabitem.winneruser.map((item: any, i) => (
+                                  <Stack sx={{ padding: '0.5rem 0' }} key={i}>
+                                      <Typography sx={{ cursor: 'pointer' }}>
+                                          {item.username}#{item.discriminator}
+                                      </Typography>
+                                  </Stack>
+                              ))
+                            : null}
                     </Stack>
                 </Box>
             </Modal>

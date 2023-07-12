@@ -114,7 +114,9 @@ const EngagePage = () => {
                                 {component}
                             </Typography>
                             <Typography color="text.secondary" sx={{ fontSize: 14, fontWeight: 400 }}>
-                                This information will be displayed publicly.
+                                {component === 'Expired' && 'These Engage-To-Earn campaigns have ended'}
+                                {component === 'Claimed' && 'You have claimed these rewards!'}
+                                {component === 'Unclaimed' && 'These are rewards yet to be claimed by you'}
                             </Typography>
                         </Stack>
                     </Stack>
@@ -125,11 +127,11 @@ const EngagePage = () => {
                         displayEmpty
                         onChange={handleChange}
                         input={<OutlinedInput />}
-                        renderValue={(selected) => <>Manager</>}
+                        renderValue={(selected) => <>{selected || 'Manager'}</>}
                         MenuProps={MenuProps}
                         inputProps={{ 'aria-label': 'Without label' }}
                         sx={{
-                            width: 145,
+                            width: 170,
                             height: 42,
                             borderRadius: '6px',
                             padding: '12px 18px 12px 24px',

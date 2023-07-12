@@ -74,7 +74,7 @@ const ApplyCollabs = () => {
             });
             return;
         }
-        
+
         await applyCollab(form);
         navigate('../my_collabs');
     };
@@ -158,7 +158,7 @@ const ApplyCollabs = () => {
             >
                 <Stack direction={isMobile ? 'column' : 'row'} gap={isMobile ? 0 : 9.5}>
                     <Stack gap={1} width={198}>
-                        <Typography className="req-title">Project *</Typography>
+                        <Typography className="req-title">Project*</Typography>
                         <Typography className="req-small-tle">Your Future Collab Partner</Typography>
                     </Stack>
                     <Stack justifyContent="center">
@@ -176,15 +176,15 @@ const ApplyCollabs = () => {
                             value={form.requestBy.projectName}
                             sx={{ height: 40 }}
                             className="req-input"
-                            onChange={(e: any) => {
+                            onChange={(e: any) =>
                                 setForm({
                                     ...form,
                                     requestBy: {
                                         ...form.requestBy,
                                         projectName: e.target.value
                                     }
-                                });
-                            }}
+                                })
+                            }
                         >
                             {myProject.map((row: any) => (
                                 <MenuItem key={row.id} value={row.id}>
@@ -204,18 +204,18 @@ const ApplyCollabs = () => {
                             variant="outlined"
                             className="req-input"
                             inputProps={{ maxLength: 160 }}
-                            onChange={(e: any) => {
+                            onChange={(e: any) =>
                                 setForm({
                                     ...form,
                                     requestBy: { ...form.requestBy, oneTimeReq: e.target.value }
-                                });
-                            }}
+                                })
+                            }
                         />
                     </Stack>
                 </Stack>
                 <Stack direction={isMobile ? 'column' : 'row'} gap={isMobile ? 0 : 9.5}>
                     <Stack gap={1} width={198}>
-                        <Typography className="req-title">Collab Type *</Typography>
+                        <Typography className="req-title">Collab Type*</Typography>
                         <Typography className="req-small-tle">Whitelist or other collab type</Typography>
                     </Stack>
                     <Stack justifyContent="center">
@@ -224,9 +224,7 @@ const ApplyCollabs = () => {
                             value={form.collabType}
                             sx={{ height: 40 }}
                             className="req-input"
-                            onChange={(e: any) => {
-                                setForm({ ...form, collabType: Number(e.target.value) });
-                            }}
+                            onChange={(e: any) => setForm({ ...form, collabType: Number(e.target.value) })}
                         >
                             {CollabTypeValue.map((row: any) => (
                                 <MenuItem key={row.id} value={row.id}>
@@ -240,7 +238,7 @@ const ApplyCollabs = () => {
                     <>
                         <Stack direction={isMobile ? 'column' : 'row'} gap={isMobile ? 0 : 9.5}>
                             <Stack gap={1} width={198}>
-                                <Typography className="req-title">Format *</Typography>
+                                <Typography className="req-title">Format*</Typography>
                                 <Typography className="req-small-tle">Format of whitelist collab</Typography>
                             </Stack>
                             <Stack justifyContent="center">
@@ -249,9 +247,7 @@ const ApplyCollabs = () => {
                                     value={form.format}
                                     sx={{ height: 40 }}
                                     className="req-input"
-                                    onChange={(e: any) => {
-                                        setForm({ ...form, format: Number(e.target.value) });
-                                    }}
+                                    onChange={(e: any) => setForm({ ...form, format: Number(e.target.value) })}
                                 >
                                     {FormatValue.map((row: any) => (
                                         <MenuItem key={row.id} value={row.id}>
@@ -288,7 +284,7 @@ const ApplyCollabs = () => {
                 ) : null}
                 <Stack direction={isMobile ? 'column' : 'row'} gap={isMobile ? 0 : 9.5}>
                     <Stack gap={1} width={198}>
-                        <Typography className="req-title">Announcement Description *</Typography>
+                        <Typography className="req-title">Announcement Description*</Typography>
                         <Typography className="req-small-tle">Discord Announcement Text</Typography>
                     </Stack>
                     <Stack>
@@ -311,9 +307,7 @@ const ApplyCollabs = () => {
                                 overflow: 'auto'
                             }}
                             value={form.description}
-                            onChange={(e: any) => {
-                                setForm({ ...form, description: e.target.value });
-                            }}
+                            onChange={(e: any) => setForm({ ...form, description: e.target.value })}
                         />
                     </Stack>
                 </Stack>
@@ -347,9 +341,7 @@ const ApplyCollabs = () => {
                                             padding: '0 !important'
                                         }
                                     }}
-                                    onChange={(e: any) => {
-                                        setForm({ ...form, expiretime: Number(e.target.value) });
-                                    }}
+                                    onChange={(e: any) => setForm({ ...form, expiretime: Number(e.target.value) })}
                                 >
                                     {getHourvalue().map((row: any) => (
                                         <MenuItem key={row.id} value={row.id}>
@@ -381,12 +373,12 @@ const ApplyCollabs = () => {
                                             padding: '0 !important'
                                         }
                                     }}
-                                    onChange={(e: any) => {
+                                    onChange={(e: any) =>
                                         setForm({
                                             ...form,
                                             expiretimemin: Number(e.target.value)
-                                        });
-                                    }}
+                                        })
+                                    }
                                 >
                                     {MinutesValue.map((row: any) => (
                                         <MenuItem key={row.id} value={row.id}>

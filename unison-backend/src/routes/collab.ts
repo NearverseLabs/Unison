@@ -51,7 +51,6 @@ router.post(
 router.post('/update_collab', auth, updateCollab);
 router.post('/get_project_byid', auth, getProjectById);
 
-
 router.post(
   '/new_project',
   V.body(Validator.Collab.Project.Add),

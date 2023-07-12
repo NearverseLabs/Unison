@@ -1,6 +1,13 @@
-import { DashboardIcon, CollabIcon, LogoutIcon } from 'ui-component/SvgIcon';
+import { DashboardIcon, CollabIcon, LogoutIcon, EngageIcon } from 'ui-component/SvgIcon';
 
 const Menu = [
+    {
+        id: 'engage',
+        title: 'Engage to earn',
+        type: 'item',
+        url: '/engage',
+        icon: <EngageIcon />
+    },
     {
         id: 'dashboard',
         title: 'Dashboard',
