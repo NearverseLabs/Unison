@@ -751,6 +751,8 @@ export const assignRolebyuserid = async ({ serverId, userId, mber }: any) => {
 
 export const assignRolesbyids = async ({ serverId, roleId, winners }: any) => {
   // const roles = await guild.roles.cache.get("1091347832834883655")
+  try {
+
   let guild = client.guilds.cache.get(serverId);
   const roles = await guild.roles.cache.get(roleId);
   let res = await guild.members.fetch();
@@ -763,6 +765,10 @@ export const assignRolesbyids = async ({ serverId, roleId, winners }: any) => {
       } catch (error) {}
     }
   });
+  } catch (error) {
+    
+  }
+
 };
 
 export const getBot = () => {
