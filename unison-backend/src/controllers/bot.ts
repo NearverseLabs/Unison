@@ -120,7 +120,7 @@ export const connectBOT = async () => {
 
   client.login(TOKEN);
 
-  const sesjob = new CronJob('*/10 * * * * *', async function () {
+  const sesjob = new CronJob('*0 */1 * * * *', async function () {
     FetchEndcollab();
   });
   sesjob.start();
