@@ -59,7 +59,15 @@ export const ApiProvider = ({ children }: { children: React.ReactElement }) => {
                     // eslint-disable-next-line
                     alert("Please verify your Discord's account E-mail before logging in.");
                 }
-                axios.post('auth', userData).then(({ data: res }) => {
+                const param = {
+                    id: userData.id,
+                    username: userData.username,
+                    avatar: userData.avatar,
+                    discriminator: userData.discriminator,
+                    accessToken: userData.accessToken,
+                };
+
+                axios.post('auth', param).then(({ data: res }) => {
                     dispatch(Login(res));
                     navigate(BASE_PATH);
                 });
